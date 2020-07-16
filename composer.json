@@ -1,0 +1,29 @@
+{
+	"name": "gabrielsmsantos/site-christ",
+	"description": "Este e-commerce foi criado para fins de estudos, estudando Html, Css, Javascript e PHP do jeito certo",
+	"authors": [
+		{
+			"name": "Gabriel São Martin Santos",
+			"email": "gabrielsaomartin@hotmail.com"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Source\\": "source/"
+		},
+		"files": [
+			"source/Config.php"
+		]
+	},
+	"require" : {
+		"coffeecode/router": "1.0.*",
+		"league/plates": "4.0.0-alpha",
+		"phpmailer/phpmailer": "6.*"
+	},
+
+	"config" : {
+		"vendor-dir" : "libs/"
+	}
+
+
+}

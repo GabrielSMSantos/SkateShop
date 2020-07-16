@@ -1,0 +1,997 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background: #f00;
+}
+::-webkit-scrollbar-thumb {
+    background: #706F6F;
+    border-radius: 3px;
+}
+
+@media (min-width: 1025px){
+    /* COMPONENTES MOBILE */
+
+     #topo .imgMenu{
+        display: none;
+    }
+
+        #topo #menuHamburger{
+            display: none;
+        }
+
+        #topo #menuMobile{
+            display: none;
+        }
+
+    #pesquisaMobile{
+        display: none;
+    }
+
+
+    #filtrosMobile{
+        display: none;
+    }
+
+
+    .carrinhoMobile{
+        display: none;
+    }
+
+
+/* --------------- */
+
+
+header{
+    z-index: 99;
+}
+
+#topo {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    /*010712*/
+    float: left;
+    background-color: #303030;
+}
+
+    .divCima{
+        display: flex;
+        justify-content: space-between;
+        align-items: center; 
+        position: relative;
+        width: 100%;
+        height: 172px;
+        padding: 0 3.4916201117318444%;/*50px*/
+    }
+
+    #logo{
+        width: 14.58333333333333%;
+        min-width: 180px;
+        max-width: 194px;
+    }
+
+        #logo img{
+            width: 100%;
+        }
+
+    #topo #procurar{
+        position: relative;
+        width: 40%;/* 482px 38.19444444444444 */
+        max-width: 45%;
+    }
+        #topo #procurar input{
+            float: left;
+            width: 83.33333333333333%;/* 400px */
+            padding: 12px 0 12px 50px;
+            font-size: 16px;
+            outline: 0;
+            border: 0;
+            border-top-left-radius: 5px; 
+            border-bottom-left-radius: 5px;
+        }
+        
+    #topo #procurar #btn-buscar{
+        width: 16.66666666666667%;/* 80px */
+        height: 48px;
+        cursor: pointer;
+        border: 0;
+        color: #fff;
+        outline: 0;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: #ed1c24;
+    }
+
+        #topo #procurar #btn-buscar:hover{
+            background: #BB1227;
+        }
+
+#topo #procurar #icon-search{
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    width: 30px;
+}
+
+#dvCarrinhoUser{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;/*/250*/
+}
+
+
+#topo #carrinho{
+    width: 160px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+    #topo #carrinho p{
+        color: #fff;
+        cursor: pointer;
+    }
+
+    #topo #carrinho a{
+        text-decoration: none;
+    }
+
+    #topo #carrinho img{
+        margin-right: 10px;
+    }
+
+
+    #topo #carrinho b{
+        color: #fff;
+        cursor: pointer;
+    }
+
+
+#topo #User{
+    position: relative;
+    cursor: pointer;
+}
+
+    #topo #User:hover #dropdown{
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #arrow{
+        position: absolute;
+        top: -15px;
+        right: -2px;
+        /* margin-top: 15px; */
+    }
+
+    .icon{
+        padding: 5px;
+        border-radius: 50%;
+        background: #fff;
+    }
+
+
+    #dropdown{
+        visibility: hidden;
+        list-style: none;
+        position: absolute;
+        min-width: 200px;
+        right: 15%;
+        background: #fff;
+        margin-top: 60px;
+        border-radius: 5px;
+        padding-left: 20%;
+        padding-top: 15%;
+        padding-bottom: 15%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        transition: opacity 200ms linear, visibility 200ms;
+        z-index: 99;
+        opacity: 0;
+    }
+
+
+
+            #dropdown a{
+                text-decoration: none;
+                color: #555;
+            }
+
+                #dropdown a:hover{
+                    color: #000;
+                }
+
+            #makeLogin{
+                color: #000;
+                font-size: 18px;
+            }
+
+            #hiUser{
+                color: #000;
+                font-size: 18px;
+                border-bottom: 1px solid #ccc;
+                margin-right: 10%;
+            }
+
+            .iconDrop{
+                margin-right: 5px;
+            }
+
+#menu{
+position: absolute;
+bottom: 0;
+width:100%;
+height: 50px;
+border-bottom: 1px solid #0E0E0E;
+float: left;
+background-color: #444343;
+}
+
+
+
+#menu ul li{
+    position: relative;
+    text-transform: uppercase;
+    list-style: none;
+}
+
+
+    #menu ul li:hover{
+        background: #fff;
+        color: #303030;
+        cursor: pointer;
+    }
+
+    #menu ul li:hover .subCategorias{
+        display: block;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #menu ul #lipromocao #promocao{
+        background-color: #ed1c24;
+    }
+
+#menu ul #lipromocao:hover #promocao{
+    color: #fff;
+}
+
+#menu ul li .pagMenu{
+    color: #fff;
+    padding: 13px 45px; 
+} 
+
+
+#menu ul li:hover .pagMenu{
+    color: #303030;
+}
+
+
+.subCategorias{
+    visibility: hidden;
+    position: absolute;
+    width: 500px;
+    left: 0;
+    margin-top: 4px;
+     list-style: none;
+    background: #fff;
+    padding: 20px 20px;
+    opacity: 0;
+    transition: opacity 200ms, visibility 200ms;
+}
+
+    .categ{
+        width: 150px;
+        float: left;
+    }
+
+        .opcoes{
+            color: #696969;
+        }
+
+            .subOpcoes{
+                color: #696969;
+            }
+
+                .subOpcoes:hover{
+                    text-decoration: none;
+                    color: #303030;
+                }
+
+                #rodape{
+                    position: relative;
+                    width: 100%;
+                    height: 350px;
+                    float: left;
+                    background-color: #303030;
+                }
+                    #newslatters{
+                        width: 100%;
+                        height: 100%;
+                        padding: 50px 10% 50px 10%;
+                        color: #fff;
+                    }
+                    
+                        #newslatters #esquerda{
+                            width: 41.66666666666667%;/* 600px */
+                            height: 100%;
+                            float: left;
+                        }
+                        #newslatters #direita{
+                            width: 41.66666666666667%;/* 600px */
+                            height: 100%;
+                            float: right;
+                        }
+                    
+                                #newslatters #direita #news{
+                                    color: #c4c4c4;
+                                }
+                    
+                        #newslatters #direita #txtnews{
+                           width: 50%;/* 300px */
+                           height: 50px;
+                           padding-left: 10px;
+                           border: 0;
+                           outline: 0;
+                        }
+                    
+                        #newslatters #direita #btnOk{
+                            padding: 13px 25px;
+                            border: 0;
+                            outline: 0;
+                            color: #fff;
+                            background-color: #ed1c24;
+                        }
+                            #newslatters #direita #btnOk:hover{
+                                background: #bb1227;
+                                cursor: pointer;
+                            }
+                
+                    #rodape #dvcopy{
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        width: 100%;
+                        padding: 5px 5%;
+                        color: #fff;
+                        background-color: #444343;
+                    }
+                
+                        #rodape #dvcopy #copy{
+                            float: left;
+                        }
+                
+                
+                
+                #rodape #RedesSociais{
+                    width: 185px;
+                    float: left;
+                    margin-top: 20px;
+                }
+                
+                #rodape .redes{
+                    width: 50px;
+                    height: 50px;
+                    background: #fff;
+                    border-radius: 50%;
+                    margin-left: 5%;/*20px*/
+                    text-align: center;
+                    float:left;
+                    cursor: pointer;
+                }
+                #rodape #face{
+                    background-image: url(../../media/images/icons/iconFace.png);
+                }
+                
+                #rodape #insta{
+                    background-image: url(../../media/images/icons/iconInsta.png);
+                }
+                
+                #rodape #you{
+                    background-image: url(../../media/images/icons/iconYou.png);
+                }
+
+
+}
+
+
+@media(min-width: 768px) and (max-width: 1024px){
+
+    
+    #topo #carrinho{
+        display: none;
+    }
+
+    #topo #User{
+        display: none;
+    }
+
+
+    #topo #procurar{
+        display: none;
+    }
+
+      #marcas {
+         display: none;
+        }
+
+    #filtros{
+        display: none;
+    }
+
+
+    #topo #menu{
+        display: none;
+    }
+
+
+    header{
+        z-index: 99;
+    }
+
+    #topo{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 130px;
+        width: 100%;
+        background-color: #303030;
+    }
+
+        #logo{
+            width: 130px;
+        }
+
+            #logo img{
+                width: 100%;
+            }
+
+    #topo #menu{
+        display: none;
+    }
+
+    #topo .imgMenu{
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        cursor: pointer;
+    }
+
+        #topo #menuHamburger{
+            display: none;
+        }
+
+            #topo #menuHamburger:checked ~ #menuMobile{
+                display: flex;
+            }
+
+
+
+        .carrinhoMobile{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+           
+
+    #topo #menuMobile{
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #303030;
+    }
+
+        #topo #menuMobile ul li{
+            list-style: none;
+            font-size: 2.1875em;
+        }
+
+            #topo #menuMobile ul li a{
+                color: #fff;
+                padding: 10px 50px;
+            }
+
+        #topo #logarMobile{
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.3em;
+            padding: 2px 10px;
+        }
+
+            #topo #logarMobile #iconUsuarioMobile{
+                width: 30px;
+                padding: 5px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+        #menuMobile #subItemUsuario{
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            font-size: 0.5em;
+            display: none;
+            }
+    
+            #menuMobile #dropUsuario{
+                display: none;
+            }
+    
+            #menuMobile #dropUsuario:checked ~ #subItemUsuario{
+                display: block;
+            }
+    
+
+        #topo #close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+         #pesquisaMobile{
+            height: 64px;
+            position: relative;  
+        }
+
+             #pesquisaMobile input{
+                width: 100%;
+                padding: 20px;
+                border: 0;
+                outline: none;
+                background: #444343;
+                color: #fff;
+            }
+
+            #pesquisaMobile button{
+                border: 0;
+                outline: none;
+            }
+
+
+             #pesquisaMobile #iconSearch{
+                position: absolute;
+                top: 19px;
+                right: 5px;
+                cursor: pointer;
+                padding: 0 0 10px 10px;
+            }
+
+        #filtrosMobile{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    
+            .filtroMobile{
+                padding: 15px;
+                margin-top: 5px;
+                margin-right: 2px;
+                margin-left: 2px;
+    
+            }
+
+    #topo #carrinho{
+        display: none;
+    }
+
+    #topo #User{
+        display: none;
+    }
+
+
+    #topo #procurar{
+        display: none;
+    }
+
+
+    #rodape{
+        position: relative;
+        width: 100%;
+        padding-bottom: 50px;
+        float: left;
+        background-color: #303030;
+    }
+    #newslatters{
+        width: 100%;
+        height: 100%;
+        padding: 50px 10%;
+        color: #fff;
+    }
+
+    #newslatters #esquerda{
+        width: 41.66666666666667%;/* 600px */
+        height: 100%;
+        float: left;
+    }
+    #newslatters #direita{
+        width: 41.66666666666667%;/* 600px */
+        height: 100%;
+        float: right;
+    }
+
+    #newslatters #direita #news{
+        color: #c4c4c4;
+    }
+
+    #newslatters #direita #txtnews{
+        width: 50%;/* 300px */
+        height: 50px;
+        padding-left: 10px;
+        border: 0;
+        outline: 0;
+    }
+
+    #newslatters #direita #btnOk{
+        padding: 13px 25px;
+        border: 0;
+        outline: 0;
+        color: #fff;
+        background-color: #ed1c24;
+    }
+    #newslatters #direita #btnOk:hover{
+        background: #bb1227;
+        cursor: pointer;
+    }
+
+    #rodape #dvcopy{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 5%;
+        color: #fff;
+        background-color: #444343;
+    }
+
+    #rodape #dvcopy #copy{
+        float: left;
+    }
+
+
+
+    #rodape #RedesSociais{
+        width: 185px;
+        float: left;
+        margin-top: 20px;
+    }
+
+    #rodape .redes{
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        border-radius: 50%;
+        margin-left: 5%;/*20px*/
+        text-align: center;
+        float:left;
+        cursor: pointer;
+    }
+    #rodape #face{
+        background-image: url(../../media/images/icons/iconFace.png);
+    }
+
+    #rodape #insta{
+        background-image: url(../../media/images/icons/iconInsta.png);
+    }
+
+    #rodape #you{
+        background-image: url(../../media/images/icons/iconYou.png);
+    }
+
+}
+
+
+@media(max-width: 767px){
+    
+    #topo #carrinho{
+        display: none;
+    }
+
+    #topo #User{
+        display: none;
+    }
+
+
+    #topo #procurar{
+        display: none;
+    }
+
+      #marcas {
+         display: none;
+        }
+
+    #filtros{
+        display: none;
+    }
+
+
+    #topo #menu{
+        display: none;
+    }
+
+
+    header{
+        z-index: 99;
+    }
+
+    #topo{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 130px;
+        width: 100%;
+        background-color: #303030;
+    }
+
+        #logo{
+            width: 130px;
+        }
+
+            #logo img{
+                width: 100%;
+            }
+
+    #topo #menu{
+        display: none;
+    }
+
+    #topo .imgMenu{
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        cursor: pointer;
+    }
+
+        #topo #menuHamburger{
+            display: none;
+        }
+
+            #topo #menuHamburger:checked ~ #menuMobile{
+                display: flex;
+            }
+
+
+
+        .carrinhoMobile{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+           
+
+    #topo #menuMobile{
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: #303030;
+    }
+
+        #topo #menuMobile ul li{
+            list-style: none;
+            font-size: 2.1875em;
+        }
+
+            #topo #menuMobile ul li a{
+                color: #fff;
+                padding: 10px 50px;
+            }
+
+        #menuMobile #logarMobile{
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 1.3em;
+            padding: 2px 50px 18px 2px ;
+        }
+
+            #menuMobile #logarMobile #iconUsuarioMobile{
+                width: 30px;
+                padding: 5px;
+                background-color: #fff;
+                border-radius: 50%;
+            }
+
+
+        #menuMobile #subItemUsuario{
+           position: absolute;
+           top: 50px;
+           left: 10px;
+           font-size: 0.5em;
+           display: none;
+        }
+
+        #menuMobile #dropUsuario{
+            display: none;
+        }
+
+        #menuMobile #dropUsuario:checked ~ #subItemUsuario{
+            display: block;
+        }
+
+       
+
+        #topo #close{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+         #pesquisaMobile{
+            height: 64px;
+            position: relative;  
+        }
+
+             #pesquisaMobile input{
+                width: 100%;
+                padding: 20px;
+                border: 0;
+                outline: none;
+                background: #444343;
+                color: #fff;
+            }
+
+            #pesquisaMobile button{
+                border: 0;
+                outline: none;
+            }
+
+
+             #pesquisaMobile #iconSearch{
+                position: absolute;
+                top: 19px;
+                right: 5px;
+                cursor: pointer;
+                padding: 0 0 10px 10px;
+            }
+
+        #filtrosMobile{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+    
+            .filtroMobile{
+                padding: 15px;
+                margin-top: 5px;
+                margin-right: 2px;
+                margin-left: 2px;
+    
+            }
+
+
+    #topo #carrinho{
+        display: none;
+    }
+
+    #topo #User{
+        display: none;
+    }
+
+
+    #topo #procurar{
+        display: none;
+    }
+
+    #rodape{
+        position: relative;
+        width: 100%;
+        padding-bottom: 50px;
+        float: left;
+        background-color: #303030;
+    }
+    #newslatters{
+        width: 100%;
+        height: 100%;
+        padding: 50px 5%;
+        color: #fff;
+    }
+
+    #newslatters #esquerda{
+        width: 41.66666666666667%;/* 600px */
+        height: 100%;
+        float: left;
+    }
+    #newslatters #direita{
+        width: 41.66666666666667%;/* 600px */
+        height: 100%;
+        float: right;
+    }
+
+    #newslatters #direita #news{
+        color: #c4c4c4;
+    }
+
+    #newslatters #direita #txtnews{
+        width: 50%;/* 300px */
+        height: 50px;
+        padding-left: 10px;
+        border: 0;
+        outline: 0;
+    }
+
+    #newslatters #direita #btnOk{
+        padding: 13px 25px;
+        border: 0;
+        outline: 0;
+        color: #fff;
+        background-color: #ed1c24;
+    }
+    #newslatters #direita #btnOk:hover{
+        background: #bb1227;
+        cursor: pointer;
+    }
+
+    #rodape #dvcopy{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 5px 5%;
+        color: #fff;
+        background-color: #444343;
+    }
+
+    #rodape #dvcopy #copy{
+        float: left;
+    }
+
+
+
+    #rodape #RedesSociais{
+        width: 185px;
+        float: left;
+        margin-top: 20px;
+    }
+
+    #rodape .redes{
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        border-radius: 50%;
+        margin-left: 5%;/*20px*/
+        text-align: center;
+        float:left;
+        cursor: pointer;
+    }
+    #rodape #face{
+        background-image: url(../../media/images/icons/iconFace.png);
+    }
+
+    #rodape #insta{
+        background-image: url(../../media/images/icons/iconInsta.png);
+    }
+
+    #rodape #you{
+        background-image: url(../../media/images/icons/iconYou.png);
+    }
+}

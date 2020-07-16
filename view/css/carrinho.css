@@ -1,0 +1,378 @@
+@media (min-width: 1024px) {
+
+    #conteudo {
+        width: 100%;
+        padding: 50px 8% 50px 8%;
+        background-color: #fff;
+        float: left;
+    }
+
+    #divGeral {
+        position: relative;
+        width: 100%;
+        float: left;
+        padding: 1%;
+
+    }
+
+    #divGeral .opcoesCompra {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .opcoesCompra button {
+        background: transparent;
+        border: transparent;
+        margin-left: 20px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .opcoesCompra #continuar {
+        outline: none;
+    }
+
+    .opcoesCompra #continuar a {
+        padding: 10px 50px 10px 50px;
+        background: #6a6a6a;
+        color: #fff;
+    }
+
+    .opcoesCompra #finalizar {
+        outline: none;
+    }
+
+    .opcoesCompra #finalizar a {
+        padding: 10px 50px 10px 50px;
+        background: #ed1c24;
+        color: #fff;
+    }
+
+    #divGeral tr th {
+        font-size: 16px;
+        text-transform: uppercase;
+        font-weight: 100;
+    }
+
+    #divGeral .align {
+        text-align: center;
+    }
+
+    #divGeral .qntProduto {
+        max-width: 40px;
+    }
+
+    .qntProduto:disabled {
+        background: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+    }
+
+    .alterarValor {
+        padding: 0 5px;
+        cursor: pointer;
+        font-weight: bolder;
+        background: #ed1c24;
+        color: #fff;
+        border: 0;
+    }
+
+    .alterarValor:focus {
+        outline: none;
+    }
+
+    #divGeral #excluir {
+        cursor: pointer;
+    }
+
+    #divGeral .imgProduto {
+        width: 150px;
+    }
+
+    #divGeral .nomeProduto {
+        margin-left: 10px;
+    }
+
+    .carrVazio {
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+    }
+
+
+    #divGeral h2 {
+        color: #777;
+    }
+
+    .espacosub {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 65px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+        padding-right: 20px;
+        background: #fff;
+    }
+
+    .espaco {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /*height: 65px;*/
+        padding-top: 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+        padding-right: 20px;
+        padding-left: 20px;
+        background: #fff;
+    }
+
+    .espaco #calcFrete {
+        font-size: 14px;
+        font-weight: 100px;
+    }
+
+
+    .espaco #calcFrete input {
+        margin-left: 8px;
+        padding: 8px;
+        outline: none;
+    }
+
+    .espaco #calcFrete button {
+        padding: 9px 25px 9px 25px;
+        margin-left: -3px;
+        border: 1px solid #ed1c24;
+        background: #ed1c24;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .espaco #calcFrete #ConsultarCep {
+        margin-left: 50px;
+        color: #ed1c24;
+        text-transform: uppercase;
+        font-size: 13px;
+        text-decoration: underline;
+    }
+
+    .espaco #calcFrete button:hover {
+        background: #f14950;
+    }
+
+
+    #espacoTotal {
+        text-align: right;
+        padding-top: 20px;
+        height: 100px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+        padding-right: 20px;
+        background: #fff;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    #total {
+        color: #888;
+    }
+
+    #descontoAvista {
+        font-size: 12px;
+    }
+
+    #parcelado {
+        font-size: 14px;
+    }
+
+
+    table {
+        margin: 30px 0;
+    }
+
+    #deslogado {
+        width: 100%;
+        height: 500px;
+        float: left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #deslogado h1 {
+        color: #f00;
+    }
+
+    #deslogado a {
+        padding: 5px 50px;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .opcoesCompra {
+        display: flex;
+        justify-content: center;
+    }
+
+    .opcoesCompra #continuar {
+        outline: none;
+        padding: 5px 0;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border: 0;
+        background: transparent;
+    }
+
+    .opcoesCompra #continuar a {
+        padding: 10px 40px 10px 40px;
+        background: #6a6a6a;
+        color: #fff;
+    }
+
+    .opcoesCompra #finalizar {
+        outline: none;
+        padding: 5px 0;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        border: 0;
+        background: transparent;
+    }
+
+    .opcoesCompra #finalizar a {
+        padding: 10px 40px 10px 40px;
+        background: #ed1c24;
+        color: #fff;
+    }
+
+    .imgProduto {
+        width: 100%;
+        max-width: 80px;
+    }
+
+    #divGeral .qntProduto {
+        max-width: 30px;
+    }
+
+    .qntProduto:disabled {
+        background: #fff;
+        color: #000;
+        border: 1px solid #ccc;
+    }
+
+    .alterarValor {
+        padding: 0 4px;
+        cursor: pointer;
+        font-weight: bolder;
+        background: #ed1c24;
+        color: #fff;
+        border: 0;
+    }
+
+    .alterarValor:focus {
+        outline: none;
+    }
+
+    .nomeProduto {
+        margin-left: 5px;
+    }
+
+    .carrVazio {
+        text-align: center;
+        margin: 20px;
+        padding: 10px;
+    }
+
+    .espacosub {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        height: 50px;
+        padding: 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .espaco {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 10px 5px 10px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .espaco .texto {
+        display: none;
+    }
+
+
+    .espaco #calcFrete {
+        font-size: 14px;
+        font-weight: 100px;
+    }
+
+
+    .espaco #calcFrete input {
+        max-width: 100px;
+        padding: 8px;
+        outline: none;
+    }
+
+    .espaco #calcFrete button {
+        padding: 9px 10px 9px 10px;
+        margin-left: -3px;
+        border: 1px solid #ed1c24;
+        background: #ed1c24;
+        color: #fff;
+        outline: none;
+        cursor: pointer;
+    }
+
+    .espaco #calcFrete #ConsultarCep {
+        display: flex;
+        margin-top: 5px;
+        color: #ed1c24;
+        text-transform: uppercase;
+        font-size: 13px;
+        text-decoration: underline;
+    }
+
+    .espaco #calcFrete button:hover {
+        background: #f14950;
+    }
+
+    #espacoTotal {
+        text-align: right;
+        padding-top: 20px;
+        height: 100px;
+        border-top: 1px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+        padding-right: 20px;
+        background: #fff;
+        font-size: 20px;
+        margin-bottom: 30px;
+    }
+
+    #total {
+        color: #888;
+    }
+
+    #descontoAvista {
+        font-size: 12px;
+    }
+
+    #parcelado {
+        font-size: 14px;
+    }
+
+}
+
+
+
+

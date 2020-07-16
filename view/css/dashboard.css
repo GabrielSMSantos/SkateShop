@@ -1,0 +1,263 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Oswald', sans-serif;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background: #f00;
+}
+::-webkit-scrollbar-thumb {
+    background: #706F6F;
+    border-radius: 3px;
+}
+
+#topo {
+	background-color: #24262d;
+	padding: 5px 8%;
+	z-index: 99;
+}
+
+	#topo #logo{
+		width: 50px;
+	}
+
+	#linkHome{
+		margin-left: 120px;
+		color: #2980b9;
+	}
+
+	#topo #divUser{
+		position: relative;
+		display: inline-block;
+		width: 230px;
+		height: 50px;
+		float: right;
+	}
+
+		#topo #divUser:hover #dropdown{
+			visibility: visible;
+			opacity: 1;
+			z-index: 99;
+		}
+
+		#topo #divUser a{
+			color: #fff;
+			text-decoration: none;
+		}
+
+	#topo #iconUser{
+		background: #eee;
+		border-radius: 50%;
+		margin-right: 5%;
+	}
+
+		
+
+		#topo #divUser #dropdown{
+			visibility: hidden;
+			list-style: none;
+			position: absolute;
+			width: 100%;
+			background: #fff;
+			margin-top: 6px;
+			border-radius: 5px;
+			padding-left: 10%;
+			padding-top: 5%;
+			padding-bottom: 5%;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			opacity: 0;
+			transition: opacity 200ms linear, visibility 200ms;
+
+		}
+
+			#topo #divUser #dropdown a:hover{
+				color: #000;
+			}
+
+
+
+			#topo #divUser #dropdown .subItem{
+				font-weight: bolder;
+				color: #555;
+			}
+
+
+#menuLateral{
+	float: left;
+	width: 20%;/*300px*/
+	height: 100%;
+	background: #1C1F26;
+	z-index: 0;
+}
+
+	#UserLogado{
+		padding: 30px 10%;
+		background: #272C36;
+	}
+
+		#UserLogado img{
+			background: #fff;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+
+		#menuLateral #UserLogado h4{
+			color: #fff;
+		}
+	#menuLateral ul{
+		position: relative;
+
+	}
+
+	#menuLateral ul li{
+		padding: 15px 8%;
+		color: #fff;
+		cursor: pointer;
+	}
+
+		#menuLateral ul li:hover{
+			background: #333845;
+			opacity: 1;
+		}
+
+		
+		#menuLateral ul li:hover a{
+			color: #fff;
+		}
+
+			#menuLateral ul li a{
+				color: #fff;
+				text-decoration: none;
+			}
+
+		.Categoria{
+			padding: 15px 8%;
+			text-transform: uppercase;
+			background: #272C36;
+			color: #ccc;
+			cursor: default;
+		}
+
+
+	.icon{
+		margin-right: 5px;
+		background: #000;
+		border: 1px solid #444;
+		border-radius: 50%;
+		padding: 5px;
+	}
+
+	.iconCategoria{
+		float: right;
+	}
+
+	.active{
+		margin-right: 5px;
+		background: #961227;
+		border: 1px solid #961227;
+		border-radius: 50%;
+		padding: 5px;
+	}
+
+		.pgActive{
+			opacity: 1;
+			background: #333845;
+		}
+
+		.pgDesative{
+			opacity: 0.6;
+		}
+
+
+
+main{
+	width: 80%;
+	height: 500px;
+	float: right;
+	padding-bottom: 100px;
+	z-index: 0;
+}
+
+		#pgAtual{
+			padding-top: 10px;
+			padding-bottom: 5px;
+			padding-left: 20px;
+			background: #fff;
+			box-shadow: 5px 2px 15px grey;
+			margin-bottom: 25px;
+		}
+
+		#namePage{
+			margin-left: 5%;
+		}
+
+		.dash{
+			width: 256px;
+			background: #21a09d;
+			margin-left: 20px;
+			margin-top: 20px;
+			padding-top: 10px;
+			padding-left: 30px;
+			display: inline-block;
+			cursor: pointer;
+			color: #fff;
+			border-bottom: 7px solid #f00;
+			border-radius: 0 0 5px 5px;
+		}
+
+				.dash b{
+					font-size: 25px;
+				}
+
+				.iconDash{
+					margin-right: 15px;
+					background: #fff;
+					border: 1px solid #fff;
+					border-radius: 50%;
+					padding: 5px;
+				}
+
+				#date{
+					position: relative;
+					width: 250px;
+					border-radius: 35px;
+					margin: 20px;
+				}
+
+
+				#calendar{
+					width: 250px;
+					border: 1px solid #ccc;
+					border-radius: 35px;
+					z-index: 0;
+				}
+
+
+					#month{
+						position: absolute;
+						top: 20px;
+						left: 50%;
+						color: #fff;
+					}
+
+
+					#data_Ano{
+						position: absolute;
+						top: 100px;
+						left: 50%;
+						color: #000;
+					}
+
+
+
+			
+		

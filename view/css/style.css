@@ -1,0 +1,618 @@
+@media(min-width:1024px){ /* TELAS ACIMA DE 1025PX */
+    /* COMPONENTES MOBILE */
+    #topo .imgMenu{
+        display: none;
+    }
+
+    #topo #menuHamburger{
+        display: none;
+    }
+
+    #topo #menuMobile{
+        display: none;
+    }
+
+    #pesquisaMobile{
+        display: none;
+    }
+
+    .carrinhoMobile{
+        display: none;
+    }
+    /* --------------- */
+
+
+ .carousel-item{
+        max-height: 550px;
+    }
+
+#titulo{
+	margin-top: 50px;
+	width: 92%;/*150px*/
+	color: #24262D;
+	padding: 5px 0 5px 10px; 
+}
+
+#conteudo{
+	width: 100%;
+	background-color:#fff;
+	float: left;
+}
+	
+	section{
+		width: 89%;
+		margin: auto;
+	}
+    
+      .gtco-client {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          float: left;
+          width: 100%;
+          padding: 2em 2%;/*3em 9%*/
+          background: #f6f6f6;
+        }
+
+                .gtco-client .img-responsive {
+                  width: 100%;
+                  display: inline-block;
+                  cursor: pointer;
+                }
+
+                #marcas{
+                    display: grid;
+                    grid-template-columns: 150px 150px 150px 150px 150px 150px;
+                    grid-template-rows: 55px 55px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                    width: 100%;
+                }
+
+
+    #colecao{
+        display: grid;
+        grid-template-columns: 45.13888888888889% 33.3%;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #colecao1{
+        width: 100%;
+        position: relative;
+        margin-top: 100px; 
+    }
+        #colecao1:hover .colecaoDiv{
+            display: block;
+        }
+    
+        #colecao1 img{
+            width: 100%;
+        }
+
+        .colecaoDiv{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 99;
+            display: none;
+        }
+
+            .colecaoDiv a{
+                position: absolute;
+                    left: 50%;
+                    top: 40%;
+                margin-left: -80px;
+                padding: 30px 80px;
+                background: transparent;
+                border: 2px solid #fff;
+                color: #fff;
+                text-transform: uppercase;
+                font-size: 18px;
+                text-decoration: none;
+            }
+    
+                .colecaoDiv a:hover{
+                    background: #fff;
+                    color: #000;
+                }
+    
+    #colecao2{
+        position: relative;
+        width: 100%;/* 650px */ 
+        /* margin-left: 10%; */
+        /* float: left; */
+    }
+        #colecao2:hover .colecaoDiv{
+            display: block;
+        }
+    
+        #colecao2 img{
+            width: 100%;   
+        }
+
+        #colecao3{
+            position: relative;
+            width: 100%;/* 480px */
+            float: left;
+            margin-left: 5px;
+            margin-bottom: 50px;
+        }
+    
+            #colecao3:hover .colecaoDiv{
+                display: block;
+            }
+        
+            #colecao3 img{
+                 width: 100%;
+            }
+#destaques{
+    width: 100%;
+    padding: 0 10%;
+}
+
+    #dvProduto{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-content: center;
+        column-gap: 10px;
+    }
+
+
+    .Produtos{
+        display: grid;
+        grid-template-rows: auto 100px 38px;
+        justify-items: center;
+        width: 100%;
+        max-width: 260px;
+        border: 2px solid #fff;
+        text-align: center;
+        gap: 5px;
+    }
+
+    .Imagem{
+        width: 100%;/*270px*/
+    }
+
+
+    .descricao{
+        width: 90%;/*270px*/
+        margin-top: 15px;
+    }
+
+    .descricao h6{
+        font-weight: 100;
+    }
+
+    .preco{
+        text-decoration: line-through;
+        color: #999;
+    }
+
+    .promocao{
+        color: #ed1c24;
+        margin-left: 10px;
+    }
+
+    .botoes{
+        width: 100%;
+        max-height: 38px;
+    }
+
+}
+
+@media(min-width: 768px) and (max-width: 1024px){
+    
+
+    .gtco-client{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        width: 100%;
+        padding: 2em 2%;/*3em 9%*/
+        background: #f6f6f6;
+      }
+
+              
+
+              .gtco-client .img-responsive{
+                width: 100%;
+                display: inline-block;
+                cursor: pointer;
+              }
+
+              .gtco-container #marcas{
+                display: grid;
+                grid-template-columns: auto auto auto auto auto auto;
+                grid-template-rows: 55px 55px;
+                justify-content: center;
+                align-items: center;
+                gap: 5px;
+                width: 100%;
+            }
+
+
+    #colecao{
+        display: grid;
+        grid-template-columns: 75%;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+    #titulo{
+        margin-top: 50px;
+        width: 92%;/*150px*/
+        color: #24262D;
+        padding: 5px 0 5px 10px; 
+    }
+
+    #colecao1{
+        width: 100%;
+        margin-top: 100px; 
+        margin-bottom: 50px;
+        float: left;
+    }
+    
+        #colecao1 img{
+            width: 100%;
+        }
+
+            #colecao1 #col5{
+                position: absolute;
+                    top: 0;
+                    left: 0;
+                width: 100%;
+             
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                display: none;
+            }
+    
+    #colecao1 #col5 a{
+        position: absolute;
+            left: 50%;
+            top: 40%;
+        margin-left: -80px;
+        padding: 30px 80px;
+        background: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    
+        #colecao1 #col5 a:hover{
+            background: #fff;
+            color: #000;
+        }
+    
+    #colecao2{
+        position: relative;
+        width: 100%;/* 650px */
+        margin: 5px 0;
+    }
+    
+        #colecao2 img{
+            width: 100%;   
+        }
+             #colecao2 #col2{
+                    position: absolute;
+                        top: 0;
+                        left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.3);
+                    display: none;
+                }
+    
+                     #colecao2 #col2 a{
+                        position: absolute;
+                            left: 50%;
+                            top: 40%;
+                        margin-left: -80px;
+                        padding: 30px 80px;
+                        background: transparent;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        text-decoration: none;
+                    }
+                    
+                      #colecao2 #col2 a:hover{
+                            background: #fff;
+                            color: #000;
+                        }
+    
+    
+        #colecao3{
+            position: relative;
+            width: 100%;/* 480px */
+            margin-top: 15px;
+            margin-bottom: 50px;
+        }
+    
+    
+            #colecao3 img{
+                 width: 100%;
+            }
+    
+    
+                #colecao3 #col3{
+                    position: absolute;
+                        top: 0;
+                        left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.3);
+                    display: none;
+                }                
+    
+                #colecao3 #col3 a{
+                        position: absolute;
+                            left: 50%;
+                            top: 40%;
+                        margin-left: -80px;
+                        padding: 30px 80px;
+                        background: transparent;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        text-decoration: none;
+                    }   
+                        #colecao3 #col3 a:hover{
+                            background: #fff;
+                            color: #000;
+                        }
+
+
+    #destaques{
+        width: 100%;
+        padding: 0 10%;
+    }
+
+
+    section #titulo{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    #dvProduto{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+    }
+
+    .Produtos{
+        display: grid;
+        grid-template-rows: auto 100px 38px;
+        text-align: center;
+        gap: 5px;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 15px;
+    }
+
+        .Produtos img{
+           width: 100%;
+        }
+
+    .descricao{
+        width: 90%;/*270px*/
+        margin-left: 5%;/*15px*/
+        margin-top: 15px; 
+    }
+}
+
+
+@media(max-width: 767px){
+
+    .gtco-client{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        width: 100%;
+        padding: 2em 2%;/*3em 9%*/
+        background: #f6f6f6;
+      }
+        /*    .fornecedor{
+               width: 24.30555555555556%; 
+            }  */ 
+                .gtco-client .img-responsive{
+                    width: 100%;
+                    cursor: pointer;
+                }
+                
+
+                .gtco-container #marcas{
+                    display: grid;
+                    grid-template-columns: auto auto auto;
+                    grid-template-rows: 55px 55px;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 15px;
+                    width: 100%;
+                }
+
+    #colecao{
+        display: grid;
+        grid-template-columns: 75%;
+        grid-template-rows: auto auto;
+        justify-content: center;
+        align-items: flex-start;
+    }
+
+   
+
+    #colecao1{
+        width: 100%;
+        margin-top: 100px; 
+        margin-bottom: 50px;
+        float: left;
+    }
+    
+        #colecao1 img{
+            width: 100%;
+        }
+
+            #colecao1 #col5{
+                position: absolute;
+                    top: 0;
+                    left: 0;
+                width: 100%;
+
+                height: 100%;
+                background: rgba(0,0,0,0.3);
+                display: none;
+            }
+    
+    #colecao1 #col5 a{
+        position: absolute;
+            left: 50%;
+            top: 40%;
+        margin-left: -80px;
+        padding: 30px 80px;
+        background: transparent;
+        border: 2px solid #fff;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 18px;
+        text-decoration: none;
+    }
+    
+        #colecao1 #col5 a:hover{
+            background: #fff;
+            color: #000;
+        }
+    
+    #colecao2{
+        position: relative;
+        width: 100%;/* 650px */
+        margin: 5px 0;
+    }
+    
+        #colecao2 img{
+            width: 100%;   
+        }
+             #colecao2 #col2{
+                    position: absolute;
+                        top: 0;
+                        left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.3);
+                    display: none;
+                }
+    
+                     #colecao2 #col2 a{
+                        position: absolute;
+                            left: 50%;
+                            top: 40%;
+                        margin-left: -80px;
+                        padding: 30px 80px;
+                        background: transparent;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        text-decoration: none;
+                    }
+                    
+                      #colecao2 #col2 a:hover{
+                            background: #fff;
+                            color: #000;
+                        }
+    
+    
+        #colecao3{
+            position: relative;
+            width: 100%;/* 480px */
+            margin-top: 15px;
+            margin-bottom: 50px;
+        }
+    
+    
+            #colecao3 img{
+                 width: 100%;
+            }
+    
+    
+                #colecao3 #col3{
+                    position: absolute;
+                        top: 0;
+                        left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0,0,0,0.3);
+                    display: none;
+                }                
+    
+                #colecao3 #col3 a{
+                        position: absolute;
+                            left: 50%;
+                            top: 40%;
+                        margin-left: -80px;
+                        padding: 30px 80px;
+                        background: transparent;
+                        border: 2px solid #fff;
+                        color: #fff;
+                        text-transform: uppercase;
+                        font-size: 18px;
+                        text-decoration: none;
+                    }   
+                        #colecao3 #col3 a:hover{
+                            background: #fff;
+                            color: #000;
+                        }
+
+
+    #destaques{
+        width: 100%;
+        padding: 0 10%;
+    }
+
+
+    #destaques #titulo{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+
+    #dvProduto{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+    }
+
+    .Produtos{
+        display: grid;
+        grid-template-rows: auto 100px 38px;
+        gap: 5px;
+        text-align: center;
+        width: 100%;
+        max-width: 350px;
+    }
+
+        .Produtos img{
+           width: 100%;
+        }
+
+    .descricao{
+        width: 90%;/*270px*/
+        margin-left: 5%;/*15px*/
+        margin-top: 15px; 
+    }
+}
+
+
+
+
+

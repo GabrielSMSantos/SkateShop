@@ -1,0 +1,400 @@
+@charset "utf-8";
+/* CSS Document */
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";/*century gothic*/
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    background: #f00;
+}
+::-webkit-scrollbar-thumb {
+    background: #706F6F;
+    border-radius: 3px;
+}
+
+@media(min-width:1025px){
+  
+    
+    header{
+        z-index: 99;
+    }
+
+    #topo {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        background: #24262D;/*010712*/
+        float: left;
+    }
+
+
+        #logo{
+            width: 210px;
+            margin-top: 10px;
+            margin-left: 8%;
+            float: left;
+        }
+
+            #logo img{
+                width: 100%;
+            }
+
+       #topo #procurar{
+            position: absolute;
+            left: 50%;
+            margin-left: -240px;
+            float: left;
+             width: 33.33333333333333%;/* 480px */
+            margin-top: 55px;
+        }
+            #topo #procurar input{
+                float: left;
+                width: 83.33333333333333%;/* 400px */
+                padding: 12px 0 12px 50px;
+                font-size: 16px;
+                 outline: 0;
+                border: 0;
+                border-top-left-radius: 5px; 
+                border-bottom-left-radius: 5px; 
+            }
+        #topo #procurar #btn-buscar{
+            width: 16.66666666666667%;/* 80px */
+            height: 48px;
+            cursor: pointer;
+            border: 0;
+            color: #fff;
+            outline: 0;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    
+    
+            #topo #procurar #btn-buscar:hover{
+                background: #BB1227;
+            }
+
+    #topo #procurar #icon-search{
+        position: absolute;
+        left: 5px;
+        top: 8px;
+        width: 30px;
+    }
+
+	#topo #carrinho{
+        position: absolute;
+        right: 17%;
+        width: 210px;
+        float: left;
+        margin-top: 48px;
+        cursor: pointer;
+    }
+
+        #topo #carrinho p{
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #topo #carrinho a{
+            text-decoration: none;
+        }
+
+        #topo #carrinho img{
+            margin-right: 10px;
+        }
+    
+
+
+    #topo #User{
+        position: absolute;
+        float: left;
+        right: 1%;
+        margin-top: 40px;
+        width: 230px;
+        cursor: pointer;
+    }
+
+        #topo #User:hover #dropdown{
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #arrow{
+            margin-top: 15px;
+        }
+
+        .icon{
+            padding: 5px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+
+        #dropdown{
+            visibility: hidden;
+            list-style: none;
+            position: absolute;
+            width: 100%;
+            background: #fff;
+            margin-top: 25px;
+            border-radius: 5px;
+            padding-left: 10%;
+            padding-top: 5%;
+            padding-bottom: 5%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            transition: opacity 200ms linear, visibility 200ms;
+            z-index: 99;
+            opacity: 0;
+        }
+
+
+                #dropdown a{
+                    text-decoration: none;
+                    color: #555;
+                }
+
+                    #dropdown a:hover{
+                        color: #000;
+                    }
+
+                #makeLogin{
+                    color: #000;
+                    font-size: 18px;
+                }
+
+                #hiUser{
+                    color: #000;
+                    font-size: 18px;
+                    border-bottom: 1px solid #ccc;
+                    margin-right: 10%;
+                }
+
+                .iconDrop{
+                    margin-right: 5px;
+                }
+	
+	#topo #eoc{
+		width: 180px;
+		float: right;
+	}
+	
+	#topo #eoc a{
+		color: #fff;
+		text-decoration: none;
+		font-size: 14px;
+		float: left;
+		margin-left: 5%;
+		line-height: 20px;
+	}
+        #topo #eoc a:hover{
+            text-decoration: underline;
+        }
+	
+	#topo #eoc p{
+		color: #fff;
+		font-size: 10px;
+		float: left;
+		margin-left: 5%;
+		line-height: 20px;
+	}
+	
+	#topo #eoc img{
+		width: 20px;
+		height: 20px;
+		float: left;
+		margin-left: 5%;
+	}
+
+
+#menu{
+    position: absolute;
+    bottom: 0;
+    width:100%;
+    height: 48px;
+    border-bottom: 1px solid #0E0E0E;
+    float: left;
+}
+    
+
+#menu ul li{
+        position: relative;
+        text-transform: uppercase;
+        list-style: none;
+    }
+
+
+        #menu ul li:hover{
+            background: #fff;
+            color: #303030;
+            cursor: pointer;
+        }
+
+        #menu ul li:hover .subCategorias{
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+    
+    #menu ul li .pagMenu{
+        color: #fff;
+        padding: 12px 50px;    
+    } 
+
+
+    #menu ul li:hover .pagMenu{
+        color: #303030;
+    }
+
+
+   
+    .subCategorias{
+        visibility: hidden;
+        position: absolute;
+        width: 500px;
+        left: 0;
+        margin-top: 4px;
+        list-style: none;
+        background: #fff;
+        padding: 20px 20px;
+        opacity: 0;
+        transition: opacity 200ms, visibility 200ms;
+    }
+
+
+        .categ{
+            width: 150px;
+            float: left;
+        }
+
+            .opcoes{
+                color: #696969;
+            }
+
+                .subOpcoes{
+                    color: #696969;
+                }
+
+                    .subOpcoes:hover{
+                        text-decoration: none;
+                        color: #303030;
+                    }
+ 
+ .carousel-item{
+        max-height: 550px;
+    }
+
+
+
+#conteudo{
+	width: 100%;
+    padding: 50px 10%;
+	background-color:#fff;
+	float: left;
+}
+	
+	h1{
+        margin-bottom: 20px;
+    }
+  
+
+    
+#rodape{
+    position: relative;
+	width: 100%;
+	height: 350px;
+	background-color:#24262d;
+	float: left;
+}
+    #newslatters{
+        width: 100%;
+        height: 100%;
+        padding: 50px 10% 50px 10%;
+        color: #fff;
+    }
+    
+        #newslatters #esquerda{
+            width: 41.66666666666667%;/* 600px */
+            height: 100%;
+            float: left;
+        }
+        #newslatters #direita{
+            width: 41.66666666666667%;/* 600px */
+            height: 100%;
+            float: right;
+        }
+    
+                #newslatters #direita #news{
+                    color: #c4c4c4;
+                }
+    
+        #newslatters #direita #txtnews{
+           width: 50%;/* 300px */
+           height: 50px;
+           padding-left: 10px;
+           border: 0;
+           outline: 0;
+        }
+    
+        #newslatters #direita #btnOk{
+            padding: 15px 30px;
+            background: #961227;
+            border: 0;
+            outline: 0;
+            color: #fff;
+        }
+            #newslatters #direita #btnOk:hover{
+                background: #bb1227;
+                cursor: pointer;
+            }
+
+    #rodape #dvcopy{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #1c1f26;
+        padding: 5px 5%;
+        color: #fff;
+    }
+
+        #rodape #dvcopy #copy{
+            float: left;
+        }
+
+
+
+#rodape #RedesSociais{
+	width: 185px;
+	float: left;
+    margin-top: 20px;
+}
+
+#rodape .redes{
+	width: 50px;
+	height: 50px;
+	background: #fff;
+	border-radius: 50%;
+	margin-left: 5%;/*20px*/
+	text-align: center;
+	float:left;
+	cursor: pointer;
+}
+#rodape #face{
+	background-image: url(../img/icons/iconFace.png);
+}
+
+#rodape #insta{
+	background-image: url(../img/icons/iconInsta.png);
+}
+
+#rodape #you{
+	background-image: url(../img/icons/iconYou.png);
+}
+    
+}

@@ -1,0 +1,36 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Baloo Bhai', cursive;
+}
+
+body{
+	display: flex;
+	justify-content: center;
+}
+
+	#conteudo{
+		width: 70%;
+		min-height: 500px;
+		margin-top: 8%;
+		background: #fff;
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	th,tr{
+		text-align: left;
+	}
+
+	h1{
+		text-transform: uppercase;
+	}
+
+
+	.drop{
+		padding: 5px;	
+	}
+
+	#exampleModalLabel{
+		margin-left: 12px;
+	}

@@ -1,0 +1,29 @@
+@media(min-width:1024px){
+
+#conteudo{
+	width: 100%;
+    padding: 50px 5%;
+	background-color:#fff;
+	float: left;
+}
+	
+	
+    #campos{
+        padding: 20px 5%;
+    }
+    
+        #cardfooter a{
+            color: #c4c4c4;
+            text-decoration: none;
+        }
+            #cardfooter a:hover{
+                color: #000;
+            }
+            
+    .error{
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+    }
+
+}

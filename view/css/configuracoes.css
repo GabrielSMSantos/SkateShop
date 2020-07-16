@@ -1,0 +1,86 @@
+
+	#pgAtual{
+		padding-top: 10px;
+		padding-bottom: 5px;
+		padding-left: 20px;
+		background: #fff;
+		box-shadow: 5px 2px 15px grey;
+		margin-bottom: 25px;
+	}
+
+		#namePage{
+			margin-left: 5%;
+		}
+
+	.accordion{
+		margin: 0 1%;
+		z-index: 0;
+	}
+
+
+	.color{
+		margin-right: 30px;
+		margin-bottom: 15px;
+	}
+
+
+	#dropdownSlide{
+		width: 80%;
+		padding: 5px;
+	}
+
+	#favSite{
+		width: 30%;
+		float: left;
+	}
+
+		#favSite #favicon{
+			width: 50px;
+			margin-left: 30px;
+			padding: 10px;
+			border: 1px solid #ccc;
+		}
+
+	#fileFav{
+		width: 70%;
+		float: left;
+	}
+
+
+	.identImg{
+		height: 50px;
+		margin-bottom: 20px;
+	}
+
+
+	#logoSite{
+		width: 150px;
+		margin-left: 30px;
+		padding: 10px;
+		border: 1px solid #ccc;
+	}
+
+	#atualizar{
+		position: relative;
+		width: 100px;
+		left: 50%;
+		margin-left: -50px;
+	}
+
+
+	.fonte{
+		width: 30%;
+		padding: 5px;
+	}
+
+	#inserirProduto{
+		padding: 3%;
+	}
+
+		#inserirProduto input{
+			margin-bottom: 10px;
+		}
+
+		#inserirProduto select{
+			padding: 5px;
+		}
