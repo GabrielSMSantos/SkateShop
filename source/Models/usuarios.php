@@ -68,33 +68,46 @@ class Usuarios extends Conexao{
         return $stmt->rowCount();
     }
 
-    public static function logar($email, $senha){
+    public static function logar($email, $senha)
+    {
         $stmt = Conexao::prepare("SELECT id,nome,permissao FROM usuarios WHERE email=:email AND senha=:senha");
         $stmt->bindParam(':email', $email, \PDO::PARAM_STR);
         $stmt->bindParam(':senha', $senha, \PDO::PARAM_STR);
         $stmt->execute();
 
-        Usuarios::$quantLinhas = $stmt->rowCount();
+        self::$quantLinhas = $stmt->rowCount();
         return $stmt->fetch();
     }
 
-    public static function infoConta($id){
+    public static function infoConta(int $id)
+    {
         $stmt = Conexao::prepare("SELECT * FROM usuarios WHERE id= :id");
         $stmt->bindParam(':id', $id, \PDO::PARAM_INT);
         $stmt->execute();
 
-        Usuarios::$quantLinhas = $stmt->rowCount();
+        self::$quantLinhas = $stmt->rowCount();
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     } 
+
+    public static function recipientName(string $email)
+    {
+        $stmt = Conexao::prepare("SELECT nome FROM usuarios WHERE email= :email");
+        $stmt->bindParam(':email', $email, \PDO::PARAM_STR);
+        $stmt->execute();
+
+        self::$quantLinhas = $stmt->rowCount();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
     
     public static function updateConta($nome, $cpf, $dataNascimento, $cep, $endereco, $numero, $complemento,
                                        $bairro, $cidade, $estado, $telefone, $telefoneAlternativo, $celular,
-                                       $email, $id){
+                                       $email, $id)
+                                       {
 
         $stmt = Conexao::prepare("UPDATE usuarios SET nome= :nome, 
                                                           cpf= :cpf, 
                                                           dataNascimento= :dataNascimento, 
-                                                          cep= :cep, 
+                                                           cep= :cep, 
                                                           endereco= :endereco, 
                                                           numero= :numero, 
                                                           complemento= :complemento, 

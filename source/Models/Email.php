@@ -21,7 +21,7 @@ class Email
         $this->data = new stdClass(); 
 
         $this->mail->isSMTP();
-        $this->mail->isHTML();
+        $this->mail->isHTML(true);
         $this->mail->setLanguage("br");
 
         $this->mail->SMTPAuth = true;
@@ -35,7 +35,7 @@ class Email
     }
 
 
-    public function add(string $subject, string $body, string $recipient_name, string $recipien_email): SendEmail
+    public function add(string $subject, string $body, string $recipient_name, string $recipien_email): Email
     {
         $this->data->subject = $subject;
         $this->data->body = $body;
@@ -55,6 +55,7 @@ class Email
             $this->mail->setFrom($from_email, $from_name);
 
             $this->mail->send();
+            return true;
 
         } catch (Exception $exception) {
             $this->error = $exception;
@@ -67,11 +68,4 @@ class Email
         return $this->error;
     }
     
-    private static function emailMessage(): string
-    {
-        $message = "<h1>Recuperação de Senha</h1>";
-        $message .= "<a href='http://localhost/site-christ/Enviar-Email'>Recuperar Senha</a>";
-
-        return $message;
-    }
 }

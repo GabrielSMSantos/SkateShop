@@ -3,6 +3,7 @@
 namespace Source\Controllers;
 
 use Source\Models\Email;
+use Source\Models\Usuarios;
 
 class SendEmail
 {
@@ -11,13 +12,28 @@ class SendEmail
     {
         $email = new Email();
 
-        $email->add(
-            "Este é um Email de teste",
-            "<h1>Olá Mundo!</h1>",
-            $data["recipient_name"],
-            $data["email"]
-        );
+        if(Usuarios::availableEmail($data["email"])){
+            $recipient = Usuarios::recipientName($data["email"]);
+
+            $email->add(
+                "Este é um Email de teste",
+                "<h1>Olá Mundo!</h1>",
+                $recipient["nome"],
+                $data["email"]
+            )->send();
+    
+            if(!$email->error()){
+                $result = 0;
+    
+            } else {
+                $result = 2;
+            }
+
+        } else {
+            $result = 1;
+        }
         
-        echo json_encode($email);
+        
+        echo json_encode($result);
     }
 }

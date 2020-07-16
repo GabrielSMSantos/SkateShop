@@ -36,6 +36,7 @@ $v->layout("_theme");
 <?php $v->start("scripts"); ?>
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
 <script type="text/javascript">
+    var alerta = document.querySelector("#errorLogin");
     
     $("#form").validate({
         rules: {
@@ -58,10 +59,67 @@ $v->layout("_theme");
         var form = $(this).serialize();
 
         $.post(data.action, form, function(callback){
-            console.log("Sucesso!");
+            if (callback == 0) {
+
+                if(alerta.hasChildNodes()){
+                    alerta.removeChild(alerta.childNodes[0]);
+                }
+
+                alerta.setAttribute("class", "alert alert-success");
+                alerta.setAttribute("role", "alert");
+
+                var p = document.createElement("b");
+                var message = document.createTextNode("Um E-mail foi enviado para o E-mail informado, será fornecido um link para redefinição de senha.");
+                p.appendChild(message);
+
+                alerta.appendChild(p);
+
+            } else if (callback == 1) {
+
+                if(alerta.hasChildNodes()){
+                    alerta.removeChild(alerta.childNodes[0]);
+                }
+
+                alerta.setAttribute("class", "alert alert-danger");
+                alerta.setAttribute("role", "alert");
+
+                var p = document.createElement("b");
+                var message = document.createTextNode("E-mail informado não existe!");
+                p.appendChild(message);
+
+                alerta.appendChild(p);
+
+            } else if (callback == 2) {
+
+                if(alerta.hasChildNodes()){
+                    alerta.removeChild(alerta.childNodes[0]);
+                }
+
+                alerta.setAttribute("class", "alert alert-danger");
+                alerta.setAttribute("role", "alert");
+
+                var p = document.createElement("b");
+                var message = document.createTextNode("Erro ao enviar E-mail.");
+                p.appendChild(message);
+
+                alerta.appendChild(p);
+
+            }
             
         }, "json").fail(function(){
-            alert("Erro")
+
+                if(alerta.hasChildNodes()){
+                    alerta.removeChild(alerta.childNodes[0]);
+                }
+
+                alerta.setAttribute("class", "alert alert-danger");
+                alerta.setAttribute("role", "alert");
+
+                var p = document.createElement("b");
+                var message = document.createTextNode("Erro ao enviar E-mail.");
+                p.appendChild(message);
+
+                alerta.appendChild(p);
         });
 
     });

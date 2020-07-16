@@ -134,14 +134,4 @@ class Usuario
         echo json_encode($result);
     }
 
-
-    public function sendEmail(array $data)
-    {
-        if (!empty($data["email"])) {
-            $result = SendEmail::send($data["email"]);
-        }
-
-        echo json_encode($result);
-    }
-
 }

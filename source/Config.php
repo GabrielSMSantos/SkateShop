@@ -17,7 +17,7 @@ define("DATABASE", [
 
 define("MAIL", [
     "host" => "smtp.gmail.com",
-    "port" => "465",
+    "port" => "587",
     "user" => "gabrielsaomartin@gmail.com",
     "passwd" => "snoopy@2000",
     "from_name" => "Gabriel São Martin Santos",
