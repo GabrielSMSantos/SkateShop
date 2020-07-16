@@ -16,8 +16,15 @@ class SendEmail
             $recipient = Usuarios::recipientName($data["email"]);
 
             $email->add(
-                "Este é um Email de teste",
-                "<h1>Olá Mundo!</h1>",
+                "Refinição de Senha",
+                '
+                <div id="topo">
+                    <img src="cid:banner_png" style="height: 10px; margin: 50px;">
+                    <br/>
+                    <h3>Segue o link para a redefinição da senha</h3>
+                    <a href="http://localhost/SkateShop/">REDEFINIR SENHA</a>
+                </div>
+                ',
                 $recipient["nome"],
                 $data["email"]
             )->send();
@@ -36,4 +43,5 @@ class SendEmail
         
         echo json_encode($result);
     }
+
 }

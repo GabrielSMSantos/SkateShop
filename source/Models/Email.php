@@ -50,6 +50,7 @@ class Email
     {
         try {
             $this->mail->Subject = $this->data->subject;
+            $this->mail->AddEmbeddedImage("media/images/bannerEmailMarketing.jpg", "banner_png");
             $this->mail->msgHTML($this->data->body);
             $this->mail->addAddress($this->data->recipient_email, $this->data->recipient_name);
             $this->mail->setFrom($from_email, $from_name);
