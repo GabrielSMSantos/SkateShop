@@ -33,7 +33,7 @@ $router->get("/Nova-Senha", "Web:newPassword", "web.newpassword");
 $router->post("/Entrar", "Usuario:login", "usuario.login");
 $router->post("/Logout", "Usuario:logout", "usuario.logout");
 $router->post("/Cadastrar", "Usuario:register", "usuario.register");
-$router->post("/Enviar-Email", "Usuario:sendEmail", "usuario.sendemail");
+$router->post("/Enviar-Email", "SendEmail:send", "sendemail.send");
 
 /*
  * Cadastrar

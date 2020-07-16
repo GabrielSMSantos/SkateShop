@@ -5,7 +5,7 @@ $v->layout("_theme");
 ?>        <link rel="stylesheet" href="<?= url("view/css/forgotPassword.css"); ?>">
 <?php $v->end(); ?>
 
-        <form id="form" data-action="<?= $router->route("usuario.sendemail"); ?>">
+        <form id="form" data-action="<?= $router->route("sendemail.send"); ?>">
             <div class="card text-center">
               <div class="card-header">
                 <h2>Esqueci a Senha</h2>

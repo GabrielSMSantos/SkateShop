@@ -12,7 +12,7 @@
             if(!isset(self::$conn)){
                 try{
                     
-                    self::$conn = new \PDO('mysql:host='.HOST.';dbname='.NAME_DB, USER, PASSWORD);
+                    self::$conn = new \PDO('mysql:host='.DATABASE["host"].';dbname='.DATABASE["db_name"], DATABASE["username"], DATABASE["password"]);
                     
                     self::$conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         

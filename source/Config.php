@@ -3,21 +3,25 @@
 /*
  * Url do site
  */
-define("URL_BASE", "http://localhost/site-christ");
+define("URL_BASE", "http://localhost/SkateShop");
 
 /*
  * Banco de Dados
  */
-define("HOST","localhost");
-define("NAME_DB","christboardshop");
-define("USER","root");
-define("PASSWORD","");
+define("DATABASE", [
+    "host" => "localhost",
+    "db_name" => "christboardshop",
+    "username" => "root",
+    "password" => ""
+]);
 
 define("MAIL", [
-    "host" => "",
-    "port" => "",
-    "user" => "",
-    "passwd" => ""
+    "host" => "smtp.gmail.com",
+    "port" => "465",
+    "user" => "gabrielsaomartin@gmail.com",
+    "passwd" => "snoopy@2000",
+    "from_name" => "Gabriel São Martin Santos",
+    "from_email" => "gabrielsaomartin@hotmail.com"
 ]);
 
 

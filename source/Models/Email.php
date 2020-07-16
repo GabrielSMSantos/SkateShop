@@ -6,16 +6,18 @@ use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 use stdClass;
 
-class SendEmail
+class Email
 {
 
     private $mail;
 
     private $data;
 
+    private $error;
+
     public function __construct()
     {
-        $this->mail = new PHPMailer();
+        $this->mail = new PHPMailer(true);
         $this->data = new stdClass(); 
 
         $this->mail->isSMTP();
@@ -35,16 +37,34 @@ class SendEmail
 
     public function add(string $subject, string $body, string $recipient_name, string $recipien_email): SendEmail
     {
-        
+        $this->data->subject = $subject;
+        $this->data->body = $body;
+        $this->data->recipient_name = $recipient_name;
+        $this->data->recipient_email = $recipien_email;
+
+        return $this;
     }
 
 
-    public function send(string $data)
+    public function send(string $from_name = MAIL["from_name"], string $from_email = MAIL["from_email"]): bool
     {
-        $emailDestino = $data;
-        $message = self::emailMessage();
+        try {
+            $this->mail->Subject = $this->data->subject;
+            $this->mail->msgHTML($this->data->body);
+            $this->mail->addAddress($this->data->recipient_email, $this->data->recipient_name);
+            $this->mail->setFrom($from_email, $from_name);
 
-        return mail($emailDestino, "Criar nova Senha" ,$message, "Content-Type: text/html");
+            $this->mail->send();
+
+        } catch (Exception $exception) {
+            $this->error = $exception;
+            return false;    
+        }
+    }
+
+    public function error(): ?Exception
+    {
+        return $this->error;
     }
     
     private static function emailMessage(): string
