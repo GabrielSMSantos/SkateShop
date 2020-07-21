@@ -140,6 +140,18 @@ class Usuarios extends Conexao{
         return $stmt->rowCount();
     }
 
+    public static function changePassword(string $email, string $password)
+    {
+        $stmt = Conexao::prepare("UPDATE usuarios SET senha= :senha WHERE email= :email");
+
+        $stmt->execute(array(
+            ':senha' => $password,
+            ':email' => $email
+        ));
+
+        return $stmt->rowCount();
+    }
+
 
     public static function availableCpf(string $cpf)
     {

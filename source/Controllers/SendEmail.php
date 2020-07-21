@@ -22,7 +22,7 @@ class SendEmail
                     <img src="cid:banner_png" style="height: 10px; margin: 50px;">
                     <br/>
                     <h3>Segue o link para a redefinição da senha</h3>
-                    <a href="http://localhost/SkateShop/Nova-Senha?email='.$data["email"].'">REDEFINIR SENHA</a>
+                    <a href="http://localhost/SkateShop/Nova-Senha?dataConfirm='.$data["email"].'">REDEFINIR SENHA</a>
                 </div>
                 ',
                 $recipient["nome"],

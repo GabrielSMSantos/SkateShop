@@ -113,6 +113,12 @@ class Web
 
     public function newPassword(): void
     {
+        if (isset($_GET["dataConfirm"])) {
+            $_SESSION["confirm"] = $_GET["dataConfirm"];
+
+            header("Location: http://localhost/SkateShop/Nova-Senha");
+        }
+        
         echo $this->view->render("newPassword", [
             "title" => "Criar nova senha"
         ]);

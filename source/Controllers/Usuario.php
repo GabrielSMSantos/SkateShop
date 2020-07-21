@@ -134,4 +134,16 @@ class Usuario
         echo json_encode($result);
     }
 
+    public function changePassword(array $data)
+    {
+        if (isset($_SESSION["confirm"])) {
+            $result = Usuarios::changePassword($_SESSION["confirm"], $data["senha"]);
+
+
+
+        }
+
+        echo json_encode($result);
+    }
+
 }

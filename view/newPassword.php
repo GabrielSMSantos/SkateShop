@@ -1,15 +1,17 @@
-<?php 
+<?php
 $v->layout("_theme"); 
 
       $v->start("cssThisPage");
 ?>        <link rel="stylesheet" href="<?= url("view/css/newPassword.css"); ?>">
 <?php $v->end(); ?>
 
-        <form id="form">
+        <form id="form" data-action="<?= $router->route("usuario.changepassword"); ?>">
+
             <div class="card text-center">
               <div class="card-header">
                 <h2>Esqueci a Senha</h2>
               </div>
+
               <div id="campos" class="card-body">
                       <div id="errorLogin"></div>
 
@@ -69,8 +71,19 @@ $v->layout("_theme");
     $("#form").on("submit", function(e){
         e.preventDefault();
 
+        var data = $(this).data();
+        var senha = document.querySelector("#senha");
 
-        
+        $.post(data.action, {
+          "senha": senha
+        }, function(callback){
+
+          console.log("SUCESSO!");
+
+        }, "json").fail(function(){
+          alert("ERROR");
+          
+        });
 
     });
 

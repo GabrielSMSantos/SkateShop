@@ -29,6 +29,7 @@ $router->post("/Alterar-Quantidade-Carrinho", "Web:alterarquantidadecarrinho", "
 $router->get("/Login", "Web:loginScreen", "web.loginscreen");
 $router->get("/Esqueci-Senha", "Web:forgotPassword", "web.forgotpassword");
 $router->get("/Nova-Senha", "Web:newPassword", "web.newpassword");
+$router->post("/Nova-Senha", "Usuario:changePassword", "usuario.changepassword");
 
 $router->post("/Entrar", "Usuario:login", "usuario.login");
 $router->post("/Logout", "Usuario:logout", "usuario.logout");
