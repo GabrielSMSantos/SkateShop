@@ -137,8 +137,15 @@ class Usuario
     public function changePassword(array $data)
     {
         if (isset($_SESSION["confirm"])) {
-            $result = Usuarios::changePassword($_SESSION["confirm"], $data["senha"]);
 
+            if (!empty($data["senha"])) {
+                $result = Usuarios::changePassword($_SESSION["confirm"], $data["senha"]);
+
+            } else {
+                $result = 0;
+            }
+
+            
 
 
         }

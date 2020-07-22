@@ -74,9 +74,7 @@ $v->layout("_theme");
         var data = $(this).data();
         var senha = document.querySelector("#senha");
 
-        $.post(data.action, {
-          "senha": senha
-        }, function(callback){
+        $.post(data.action, senha, function(callback){
 
           console.log("SUCESSO!");
 
