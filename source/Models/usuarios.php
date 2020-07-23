@@ -145,7 +145,7 @@ class Usuarios extends Conexao{
         $stmt = Conexao::prepare("UPDATE usuarios SET senha= :senha WHERE email= :email");
 
         $stmt->execute(array(
-            ':senha' => $password,
+            ':senha' => md5($password),
             ':email' => $email
         ));
 

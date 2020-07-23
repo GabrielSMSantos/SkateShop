@@ -138,15 +138,15 @@ class Usuario
     {
         if (isset($_SESSION["confirm"])) {
 
-            if (!empty($data["senha"])) {
-                $result = Usuarios::changePassword($_SESSION["confirm"], $data["senha"]);
 
-            } else {
+            if(!isset($_SESSION["senhaAlterada"])) {
+                $result = Usuarios::changePassword($_SESSION["confirm"], $data["senha"]);
+                $_SESSION["senhaAlterada"] = true;
+
+
+            }else{
                 $result = 0;
             }
-
-            
-
 
         }
 

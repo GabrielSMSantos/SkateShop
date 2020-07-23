@@ -9,7 +9,7 @@ $v->layout("_theme");
 
             <div class="card text-center">
               <div class="card-header">
-                <h2>Esqueci a Senha</h2>
+                <h2>Criar nova Senha</h2>
               </div>
 
               <div id="campos" class="card-body">
@@ -72,18 +72,44 @@ $v->layout("_theme");
         e.preventDefault();
 
         var data = $(this).data();
-        var senha = document.querySelector("#senha");
+        var form = $(this).serialize();
 
-        $.post(data.action, senha, function(callback){
-
-          console.log("SUCESSO!");
+        $.post(data.action, form, function(callback){
+            
+            if (callback == 1) {
+                  if(alerta.hasChildNodes()){
+                      alerta.removeChild(alerta.childNodes[0]);
+                  }
+  
+                  alerta.setAttribute("class", "alert alert-success");
+                  alerta.setAttribute("role", "alert");
+  
+                  var p = document.createElement("b");
+                  var message = document.createTextNode("Senha alterada com sucesso!");
+                  p.appendChild(message);
+  
+                  alerta.appendChild(p);
+            }
 
         }, "json").fail(function(){
-          alert("ERROR");
-          
+  
+                  if(alerta.hasChildNodes()){
+                      alerta.removeChild(alerta.childNodes[0]);
+                  }
+  
+                  alerta.setAttribute("class", "alert alert-danger");
+                  alerta.setAttribute("role", "alert");
+  
+                  var p = document.createElement("b");
+                  var message = document.createTextNode("Erro ao criar nova senha.");
+                  p.appendChild(message);
+  
+                  alerta.appendChild(p);
         });
 
     });
+
+    
 
 
 </script>
