@@ -78,7 +78,7 @@ class Usuarios extends Conexao{
         self::$quantLinhas = $stmt->rowCount();
         return $stmt->fetch();
     }
-
+    
     public static function infoConta(int $id)
     {
         $stmt = Conexao::prepare("SELECT * FROM usuarios WHERE id= :id");

@@ -133,7 +133,7 @@ class Usuario
 
         echo json_encode($result);
     }
-
+    
     public function changePassword(array $data)
     {
         if (isset($_SESSION["confirm"])) {

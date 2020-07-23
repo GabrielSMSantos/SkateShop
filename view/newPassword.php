@@ -45,7 +45,7 @@ $v->layout("_theme");
 <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
 <script type="text/javascript">
     var alerta = document.querySelector("#errorLogin");
-    
+  
     $("#form").validate({
         rules: {
             senha: {
