@@ -24,6 +24,23 @@ define("MAIL", [
     "from_email" => "gabrielsaomartin@hotmail.com"
 ]);
 
+define("MARCAS",
+    array(
+        "Grizzly",
+        "Dc Shoes",
+        "Diamond Supply co",
+        "Stussy",
+        "High",
+        "Supreme",
+        "Primitive",
+        "Nike Sb",
+        "Vans",
+        "Dgk",
+        "Adidas",
+        "Puma" 
+    
+));
+
 
 /*
  * Helper

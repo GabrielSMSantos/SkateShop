@@ -137,7 +137,7 @@ class Web
             ]);
 
         } else {
-            header("Location: /site-christ");
+            header("Location: /SkateShop");
         }
 
 
@@ -154,7 +154,7 @@ class Web
     public function admin(): void
     {
         if($_SESSION["permissao"] == "FALSE" || !isset($_SESSION["logado"])){
-            header("Location: /site-christ");
+            header("Location: /SkateShop");
         }
 
         echo $this->view->render("adminPanel", [

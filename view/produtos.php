@@ -12,8 +12,58 @@ $v->layout("_theme");
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
 
                 <label for="chkFiltro">
-                    <h2>Marca</h2>
+                    <p class="titulo">Marca</p>
+                    <ul class="listaMarcasCategorias">
+                        <?php
+                            foreach (MARCAS as $indice => $marca):
+                                
+                                echo "<label for='marca{$indice}'><li>$marca</li></label>
+                                
+                                      <input type='radio' name='chkMarca' id='marca{$indice}' value='$marca'>
+                                      
+                                      <br>";
+
+                            endforeach;
+                        ?>
+                    </ul>
                 </label>
+                <br>
+
+                <label for="chkFiltro">
+                    <p class="titulo">Tamanho</p>
+
+                    <ul class="listaMarcasCategorias">
+                        <label for="chkTamanho"><li>P</li></label>
+                        <input type="radio" name="chkTamanho" id="tamanhoP" value="p">
+                        <br>
+
+                        <label for="chkTamanho"><li>M</li></label>
+                        <input type="radio" name="chkTamanho" id="tamanhoM" value="m">
+                        <br>
+
+                        <label for="chkTamanho"><li>G</li></label>
+                        <input type="radio" name="chkTamanho" id="tamanhoG" value="g">
+                        <br>
+
+                        <label for="chkTamanho"><li>GG</li></label>
+                        <input type="radio" name="chkTamanho" id="tamanhoGG" value="gg">
+                        <br>
+                    </ul>
+                </label>
+                <br>
+
+                <label for="chkFiltro">
+                    <p class="titulo">Cor</p>
+
+
+                </label>
+                <br>
+
+                <label for="chkFiltro">
+                    <p class="titulo">Gênero</p>
+
+                </label>
+
 
             </div>
 
