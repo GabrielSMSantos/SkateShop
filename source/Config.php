@@ -41,6 +41,18 @@ define("MARCAS",
     
 ));
 
+define("CORES",
+    array(
+        "Preto" => "000000",
+        "Branco" => "ffffff",
+        "Laranja" => "FFA200",
+        "Vermelho" => "ed1c24",
+        "Verde" => "00B04E",
+        "Azul" => "2162EB",
+        "Rosa" => "F27EAA",
+        "Amarelo" => "FFCD00",
+    ));
+
 
 /*
  * Helper

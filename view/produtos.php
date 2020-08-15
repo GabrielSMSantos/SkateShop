@@ -11,7 +11,6 @@ $v->layout("_theme");
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
 
-                <label for="chkFiltro">
                     <p class="titulo">Marca</p>
                     <ul class="listaMarcasCategorias">
                         <?php
@@ -26,44 +25,52 @@ $v->layout("_theme");
                             endforeach;
                         ?>
                     </ul>
-                </label>
                 <br>
 
-                <label for="chkFiltro">
                     <p class="titulo">Tamanho</p>
 
                     <ul class="listaMarcasCategorias">
-                        <label for="chkTamanho"><li>P</li></label>
+                        <label for="tamanhoP"><li class="tamanho">P</li></label>
                         <input type="radio" name="chkTamanho" id="tamanhoP" value="p">
-                        <br>
 
-                        <label for="chkTamanho"><li>M</li></label>
+                        <label for="tamanhoM"><li class="tamanho">M</li></label>
                         <input type="radio" name="chkTamanho" id="tamanhoM" value="m">
-                        <br>
 
-                        <label for="chkTamanho"><li>G</li></label>
+                        <label for="tamanhoG"><li class="tamanho">G</li></label>
                         <input type="radio" name="chkTamanho" id="tamanhoG" value="g">
-                        <br>
 
-                        <label for="chkTamanho"><li>GG</li></label>
+                        <label for="tamanhoGG"><li class="tamanho">GG</li></label>
                         <input type="radio" name="chkTamanho" id="tamanhoGG" value="gg">
-                        <br>
                     </ul>
-                </label>
                 <br>
 
-                <label for="chkFiltro">
                     <p class="titulo">Cor</p>
 
+                    <ul class="listaMarcasCategorias">
+                    <?php 
+                        foreach(CORES as $indice => $value):
 
-                </label>
+                            echo "<label for='cor{$indice}'><li class='cor' style='background-color: #{$value}' alt='$indice'></li></label>
+                            
+                            <input type='radio' name='chkCor' id='cor{$indice}' value='$indice'>
+                            ";
+
+                        endforeach;
+                    ?>
+                    </ul>
                 <br>
 
-                <label for="chkFiltro">
                     <p class="titulo">Gênero</p>
 
-                </label>
+                    <ul class="listaMarcasCategorias">    
+                        <label for="tamanhoMasc"><li>Masculino</li></label>
+                        <input type="radio" name="chkGenero" id="tamanhoMasc" value="M">
+                        <br>
 
+                        <label for="tamanhoFemi"><li>Feminino</li></label>
+                        <input type="radio" name="chkGenero" id="tamanhoFemi" value="F">
+
+                    </ul>
 
             </div>
 
