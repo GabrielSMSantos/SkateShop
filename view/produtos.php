@@ -7,6 +7,7 @@ $v->layout("_theme");
 
     if(count($products) > 0):
 ?>
+
         <div id="filtros">
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
@@ -63,12 +64,16 @@ $v->layout("_theme");
                     <p class="titulo">Gênero</p>
 
                     <ul class="listaMarcasCategorias">    
-                        <label for="tamanhoMasc"><li>Masculino</li></label>
-                        <input type="radio" name="chkGenero" id="tamanhoMasc" value="M">
+                        <label for="GeneroMasc"><li>Masculino</li></label>
+                        <input type="radio" name="chkGenero" id="GeneroMasc" value="M">
                         <br>
 
-                        <label for="tamanhoFemi"><li>Feminino</li></label>
-                        <input type="radio" name="chkGenero" id="tamanhoFemi" value="F">
+                        <label for="GeneroFemi"><li>Feminino</li></label>
+                        <input type="radio" name="chkGenero" id="GeneroFemi" value="F">
+                        <br>
+
+                        <label for="GeneroUni"><li>Unissex</li></label>
+                        <input type="radio" name="chkGenero" id="GeneroUni" value="F">
 
                     </ul>
 
@@ -110,15 +115,25 @@ $v->layout("_theme");
     </select>
 </div>
 
+
+<div id="ordemProdutos">
+    <p>Ordem: </p>
+    <select name="ordem" id="dropdownOrdemProdutos">
+        <option value="Lançamento">Lançamento</option>
+        <option value="menorPreco">Menor Preço</option>
+        <option value="maiorPreco">Maior Preço</option>
+        <option value="nome">Nome</option>
+        <option value="relevancia">Relevância</option>
+    </select>
+</div>
+
 <div id="mainProdutos">
-
-
+    
     <?php
 
     if(count($products) > 0):
 
     foreach ($products as $product): ?>
-
 
 
         <div class="Produtos shadow-sm p-3 mb-5 bg-white rounded">

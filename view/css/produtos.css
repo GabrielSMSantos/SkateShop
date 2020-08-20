@@ -36,19 +36,44 @@
     #conteudo{
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 55px 2fr;
         background-color:#fff;
         float: left;
         padding-top: 35px;
         padding-bottom: 100px;
     }
 
+    #ordemProdutos{
+        display: flex;
+        height: 10px;
+        justify-content: flex-end;
+        align-items: flex-start;
+        grid-row-start: 1;
+        grid-column-start: 2;
+    }
+
+
+        #ordemProdutos p {
+            display: flex;
+            align-self: center;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        #dropdownOrdemProdutos {
+            display: flex;
+            align-self: center;
+            padding: 5px;
+        }
+
     #mainProdutos{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: 1fr;
         /* padding-right: 5%; */
         justify-content: center;
         gap: 10px;
+        grid-column-start: 2;
     }
 
     .Produtos{
@@ -93,6 +118,8 @@
             height: 100vh;
             background: #fff;
             padding: 0 20px;
+            grid-column-start: 1;
+            grid-column-end: 1;
 /*            border: 1px solid #ccc;
             border-radius: 10px;*/
        }
