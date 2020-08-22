@@ -8,7 +8,8 @@ $v->layout("_theme");
     if(count($products) > 0):
 ?>
 
-        <div id="filtros">
+        <form id="filtros">
+
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
 
@@ -76,44 +77,63 @@ $v->layout("_theme");
                         <input type="radio" name="chkGenero" id="GeneroUni" value="F">
 
                     </ul>
+                    <br>
+
+                    <button id="btnFiltrar" type="submit">
+                        <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
+                        Filtrar 
+                    </button>
 
             </div>
 
 
-        </div>
-<?php endif; ?>
+        </form>
+        
+<form id="filtrosMobile">
+    
+        <select class="filtroMobile">
+            <option selected>MARCA</option>
+            <?php
+                foreach (MARCAS as $indice => $marca):
+                    
+                    echo "<option value='$marca'>$marca</option>";
+
+                endforeach;
+            ?>
+        </select>
 
 
-<div id="filtrosMobile">
-    <select class="filtroMobile">
-        <option selected>Tamanho</option>
-        <option value="p">P</option>
-        <option value="m">M</option>
-        <option value="g">G</option>
-        <option value="gg">GG</option>
-    </select>
+        <select class="filtroMobile">
+            <option selected>TAMANHO</option>
+            <option value="p">P</option>
+            <option value="m">M</option>
+            <option value="g">G</option>
+            <option value="gg">GG</option>
+        </select>
 
-    <select class="filtroMobile">
-        <option selected>Categoria</option>
-        <option value="camiseta">Camiseta</option>
-        <option value="camisa">Camisa</option>
-        <option value="moletom">Moletom</option>
-        <option value="jaqueta">Jaqueta</option>
-        <option value="calca">Calça</option>
-        <option value="bermuda">Bermuda</option>
-    </select>
+        <select class="filtroMobile">
+            <option selected>COR</option>
+            <?php
+                foreach (CORES as $indice => $marca):
+                    
+                    echo "<option value='$indice'>$indice</option>";
 
-    <select class="filtroMobile">
-        <option selected>Marca</option>
-        <option value="grizzly">Grizzly</option>
-        <option value="diamond">Diamond</option>
-        <option value="dgk">DGK</option>
-        <option value="supra">Supra</option>
-        <option value="stussy">Stussy</option>
-        <option value="primitive">Primitive</option>
-        <option value="huf">Huf</option>
-    </select>
-</div>
+                endforeach;
+            ?>
+        </select>
+
+        <select class="filtroMobile">
+            <option selected>GÊNERO</option>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+            <option value="unissex">Unissex</option>
+        </select>
+
+        <button type="submit" class="btn btn-success">
+            <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
+            Filtrar
+        </button>
+</form>
 
 
 <div id="ordemProdutos">
@@ -126,6 +146,9 @@ $v->layout("_theme");
         <option value="relevancia">Relevância</option>
     </select>
 </div>
+<?php endif; ?>
+
+
 
 <div id="mainProdutos">
     
@@ -136,7 +159,7 @@ $v->layout("_theme");
     foreach ($products as $product): ?>
 
 
-        <div class="Produtos shadow-sm p-3 mb-5 bg-white rounded">
+        <div class="Produtos">
 
             <div class="divImg">
                 <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])); ?>">
@@ -227,8 +250,9 @@ $v->layout("_theme");
             <?php endif;
                     echo '<a class="page-link" href="'.(url("{$url}/pagina-".($i))).'">Próximo</a>';
             ?>
-        </li>
-    </li></ul>
+                </li>
+            </li>
+    </ul>
 
 <?php endif;
     else:

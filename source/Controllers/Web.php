@@ -41,10 +41,7 @@ class Web
         $url = $category.(empty($data["subCategory"]) ? "" : "/".$data["subCategory"]);
         $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
 
-        if (!empty($category) && !empty($subCategory)) {
-            $products = Produtos::paginacaoProdutos($category, $subCategory, $page);
-
-        } else if (!empty($category)) {
+        if (!empty($category) || !empty($subCategory)) {
             $products = Produtos::paginacaoProdutos($category, $subCategory, $page);
 
         } else if (!empty($busca)) {

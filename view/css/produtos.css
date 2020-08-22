@@ -36,7 +36,12 @@
     #conteudo{
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
-        grid-template-rows: 55px 2fr;
+        grid-template-rows: 100px 2fr 100px;
+        grid-template-areas: 
+            "filtro ordem ."
+            "filtro produtos ."
+            "filtro paginacao ." 
+        ;
         background-color:#fff;
         float: left;
         padding-top: 35px;
@@ -45,9 +50,9 @@
 
     #ordemProdutos{
         display: flex;
-        height: 10px;
+        grid-area: ordem;
         justify-content: flex-end;
-        align-items: flex-start;
+        align-items: center;
         grid-row-start: 1;
         grid-column-start: 2;
     }
@@ -68,6 +73,7 @@
 
     #mainProdutos{
         display: grid;
+        grid-area: produtos;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr;
         /* padding-right: 5%; */
@@ -77,24 +83,27 @@
     }
 
     .Produtos{
-        display: grid;
-        grid-template-rows: auto 100px 38px;
-        justify-items: center;
+        /* grid-template-rows: auto 100px 38px; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* text-align: center; */
         width: 100%;
         max-width: 280px;
-        border: 2px solid #fff;
+        max-height: 380px;
         text-align: center;  
         gap: 5px;
     }
 
     .Imagem{
         width: 100%;/*270px*/	
+        /* max-height: 247px; */
     }
 
     
     .descricao{
-        width: 90%;/*270px*/
-        margin-top: 15px; 
+        /* width: 90%;270px */
+        /* margin: 15px 0;  */
     }
 
         .descricao h6{
@@ -112,16 +121,15 @@
         }
 	
 	   #filtros{
-            display: grid;
+            display: flex;
+            grid-area: filtro;
             justify-content: center;
             width: 100%;
-            height: 100vh;
+            /* height: 100vh; */
             background: #fff;
             padding: 0 20px;
             grid-column-start: 1;
-            grid-column-end: 1;
-/*            border: 1px solid #ccc;
-            border-radius: 10px;*/
+            grid-column-end: 1; 
        }
 
             .titulo{
@@ -171,15 +179,28 @@
                 display: none;
             }
 
+        #btnFiltrar {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 5px 15px;
+            background: green;
+            color: #fff;
+            border: none;
+            outline: 0;
+            cursor: pointer;
+            text-transform: uppercase;
+        }    
+
 
         .liPaginacao{
-            width: 100%;
-            list-style-type: none;
             display: flex;
-            align-content: center;
+            grid-area: paginacao;
+            height: 100%;
+            list-style-type: none;
+            align-items: center;
             justify-content: flex-end;
-            grid-column-start: 2;
-            grid-column-end: 3;
+            margin: 0;
         }
 
         .botoes{
@@ -195,7 +216,11 @@
 
 
 @media (min-width: 768px) AND (max-width: 1024px){
-    #titulo{
+    #ordemProdutos {
+        display: none;
+    }
+
+    #titulo {
         margin-top: 50px;
         margin-left:5.7%;/*96px*/
         width: 92%;/*150px*/
@@ -203,9 +228,26 @@
         padding: 5px 0 5px 10px;
     }
 
-    #filtrosMobile{
+    #filtrosMobile {
+        display: flex;
+        justify-items: center;
         margin-bottom: 15px;
     }
+
+        .filtroMobile {
+            width: 15%;
+        }
+
+        #chkFiltro {
+            display: flex;
+            justify-content: center;
+        }
+
+        #filtrosMobile button {
+            /* width: 20%; */
+            padding: 2px 50px;
+            margin-left: 10px;
+        }
 
     #conteudo {
         display: grid;
@@ -260,11 +302,13 @@
         }
 
     .liPaginacao{
-        width: 100%;
-        list-style-type: none;
         display: flex;
-        align-content: center;
+        width: 100%;
+        height: 100%;
+        list-style-type: none;
+        align-items: center;
         justify-content: center;
+        margin: 15px 0;
     }
 
 
@@ -276,6 +320,9 @@
 
 
 @media (max-width: 767px){
+    #ordemProdutos {
+        display: none;
+    }
 
     #titulo{
         margin-top: 50px;
@@ -285,9 +332,29 @@
         padding: 5px 0 5px 10px; 
     }
 
-    #filtrosMobile{
+    #filtrosMobile {
+        display: flex;
+        justify-items: center;
+        flex-wrap: wrap;
         margin-bottom: 15px;
     }
+
+        .filtroMobile {
+            width: 15%;
+            min-width: 114px;
+            margin-bottom: 5px;
+        }
+
+        #chkFiltro {
+            display: flex;
+            justify-content: center;
+        }
+
+        #filtrosMobile button {
+            /* width: 20%; */
+            padding: 2px 50px;
+            margin-left: 10px;
+        }
     
     #conteudo{
         width: 100%;
@@ -346,6 +413,7 @@
         display: flex;
         align-content: center;
         justify-content: center;
+        margin: 15px 0;
     }
 
     .botoes{

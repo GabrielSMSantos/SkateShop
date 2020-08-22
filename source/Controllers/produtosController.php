@@ -67,7 +67,7 @@ class ProdutosCtrl{
 
     }
 
-    public static function paginacaoProdutosCtrl($categoria, $marcaProduto, $subCategoria, $genero, $busca){
+    /*public static function paginacaoProdutosCtrl($categoria, $marcaProduto, $subCategoria, $genero, $busca){
 
         if(isset($_GET["pagina"])){ // TIRANDO O GET PAGINA DA URL PARA PASSAR NOVAMENTE SOMENTE OS FILTROS DE CATEGORIA PARA OS BOTOES DE PAGINA
             $url = strstr($_SERVER["REQUEST_URI"], "?");
@@ -102,7 +102,7 @@ class ProdutosCtrl{
         
 
         return $produtos;
-    }
+    }*/
 
     public static function buscarPorTipo(){
         
