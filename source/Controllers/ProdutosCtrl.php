@@ -1,6 +1,6 @@
 <?php 
 
-include_once "../model/produtos.php";
+namespace Source\Controllers;
 
 class ProdutosCtrl{
     private $categoria;
@@ -103,6 +103,14 @@ class ProdutosCtrl{
 
         return $produtos;
     }*/
+
+    public static function filtro(array $data) 
+    {
+        
+
+
+        echo json_encode($data);
+    }
 
     public static function buscarPorTipo(){
         

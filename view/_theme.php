@@ -152,24 +152,32 @@
                             <li class="categ">
                                 <b>Marcas</b>
                                 <ul class="opcoes">
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Grizzly/pagina-1");  ?>">Grizzly</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Diamond/pagina-1"); ?>">Diamond</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Dgk/pagina-1"); ?>">DGK</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Supra/pagina-1"); ?>">Supra</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Stussy/pagina-1"); ?>">Stussy</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Primitive/pagina-1"); ?>">Primitive</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Huf/pagina-1"); ?>">Huf</a></li>
+                                    <?php
+                                        foreach (MARCAS as $indice => $value):
+                                            
+                                            echo "<li><a class='subOpcoes' href='". url("Roupas/$value/pagina-1"). "'>$value</a></li>";
+                                            
+                                        endforeach;
+
+                                    ?>
+
                                 </ul>
                             </li>
                             <li class="categ">
                                 <b>Categorias</b>
                                 <ul class="opcoes">
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Camiseta/pagina-1"); ?>">Camiseta</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Camisa/pagina-1"); ?>">Camisa</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Moletom/pagina-1"); ?>">Moletom</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Jaqueta/pagina-1"); ?>">Jaqueta</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Calca/pagina-1"); ?>">Calça</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Roupas/Bermuda/pagina-1"); ?>">Bermuda</a></li>
+                                    <?php
+                                        foreach (ROUPAS as $indice => $value):
+                                            
+                                                echo "<li>
+                                                        <a class='subOpcoes' href='".url("Roupas/$value/pagina-1")."'>
+                                                            $value
+                                                        </a>
+                                                      </li>";
+
+                                        endforeach;
+                                    ?>
+
                                 </ul>
                             </li>
                             <li class="categ">
@@ -190,13 +198,15 @@
                             <li class="categ">
                                 <b>Marcas</b>
                                 <ul class="opcoes">
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Nike/pagina-1"); ?>">Nike</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Adidas/pagina-1"); ?>">Adidas</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Puma/pagina-1"); ?>">Puma</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Supra/pagina-1"); ?>">Supra</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Vans/pagina-1"); ?>">Vans</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/New-Balance/pagina-1"); ?>">New Balance</a></li>
-                                    <li><a class="subOpcoes" href="<?=url("Calcados/Asics/pagina-1"); ?>">Asics</a></li>
+                                    <?php
+                                        foreach (MARCAS as $indice => $value):
+                                            
+                                            echo "<li><a class='subOpcoes' href='". url("Calcados/$value/pagina-1"). "'>$value</a></li>";
+                                            
+                                        endforeach;
+
+                                    ?>
+
                                 </ul>
                             </li>
 
@@ -217,13 +227,15 @@
                             <li class="categ">
                                 <b>Marcas</b>
                                 <ul class="opcoes">
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Grizzly/pagina-1"); ?>">Grizzly</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Diamond/pagina-1"); ?>">Diamond</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Dgk/pagina-1"); ?>">DGK</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Supra/pagina-1"); ?>">Supra</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Stussy/pagina-1"); ?>">Stussy</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Primitive/pagina-1"); ?>">Primitive</a></li>
-                                    <li><a class="subOpcoes" href="<?= url("Acessorios/Huf/pagina-1"); ?>">Huf</a></li>
+                                    <?php
+                                        foreach (MARCAS as $indice => $value):
+                                            
+                                            echo "<li><a class='subOpcoes' href='". url("Acessorios/$value/pagina-1"). "'>$value</a></li>";
+                                            
+                                        endforeach;
+
+                                    ?>
+
                                 </ul>
                             </li>
                             <li class="categ">

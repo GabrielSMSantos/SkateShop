@@ -27,8 +27,8 @@ define("MAIL", [
 define("MARCAS",
     array(
         "Grizzly",
-        "Dc Shoes",
-        "Diamond Supply co",
+        "Dc-Shoes",
+        "Diamond",
         "Stussy",
         "High",
         "Supreme",
@@ -37,7 +37,8 @@ define("MARCAS",
         "Vans",
         "Dgk",
         "Adidas",
-        "Puma" 
+        "Puma" ,
+        "Champion"
     
 ));
 
@@ -53,6 +54,23 @@ define("CORES",
         "Amarelo" => "FFCD00",
     ));
 
+define("ROUPAS",[
+    "Camiseta",
+    "Camisa",
+    "Moletom",
+    "Jaqueta",
+    "Calca" => "Calça",
+    "Bermuda"
+]);
+
+define("ACESSORIOS", [
+    "Boné",
+    "Meia",
+    "Gorro",
+    "Mochila",
+    "Carteira",
+    "Chaveiro"
+]);
 
 /*
  * Helper

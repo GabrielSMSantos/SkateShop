@@ -8,7 +8,7 @@ $v->layout("_theme");
     if(count($products) > 0):
 ?>
 
-        <form id="filtros">
+        <form id="filtros" data-action="<?= $router->route("ProdutosCtrl.filtro") ?>">
 
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
@@ -276,6 +276,28 @@ $v->layout("_theme");
         function excluirProduto(id) {
             document.getElementById("modalExcluir").href = "../controler/deletarProduto.php?acao=Deletar&id=" + id;
         }
+
+        $("#filtros").on("submit", function(element){
+            element.preventDefault();
+
+            var data = $(this).data();
+            var form = $(this).serialize();
+
+            console.log(data.action);
+
+            $.post(data.action, form, function() {
+
+                console.log("sucesso!");
+
+            }, "json" ).fail(function() {
+                console.log("ERROR");
+
+            });
+
+        });
+
+
+
 
         $('.collapse').collapse();
     </script>

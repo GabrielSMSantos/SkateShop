@@ -98,11 +98,7 @@ class Produtos extends Conexao
 
             if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
 
-                if ($subCategory == "Grizzly" || $subCategory == "Diamond" || $subCategory == "Dgk" ||
-                    $subCategory == "Supra" || $subCategory == "Stussy" || $subCategory == "Primitive" ||
-                    $subCategory == "Huf" || $subCategory == "Nike" || $subCategory == "Adidas" ||
-                    $subCategory == "Puma" || $subCategory == "Supra" || $subCategory == "Vans" ||
-                    $subCategory == "New Balance" || $subCategory == "Asics") {
+                if (in_array($subCategory, MARCAS)) {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
@@ -134,11 +130,7 @@ class Produtos extends Conexao
                 }
 
 
-            } else if ($category == "Grizzly" || $category == "Diamond" || $category == "Dgk" ||
-            $category == "Supra" || $category == "Stussy" || $category == "Primitive" ||
-            $category == "Huf" || $category == "Nike" || $category == "Adidas" ||
-            $category == "Puma" || $category == "Supra" || $category == "Vans" ||
-            $category == "New Balance" || $category == "Asics") {
+            } else if (in_array($category, MARCAS)) {
                 
                 $stmt = Conexao::prepare("SELECT * FROM produtos WHERE marca= :categoria");
                 $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR);
@@ -179,11 +171,7 @@ class Produtos extends Conexao
 
             if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
 
-                if ($subCategory == "Grizzly" || $subCategory == "Diamond" || $subCategory == "Dgk" ||
-                    $subCategory == "Supra" || $subCategory == "Stussy" || $subCategory == "Primitive" ||
-                    $subCategory == "Huf" || $subCategory == "Nike" || $subCategory == "Adidas" ||
-                    $subCategory == "Puma" || $subCategory == "Supra" || $subCategory == "Vans" ||
-                    $subCategory == "New Balance" || $subCategory == "Asics") {
+                if (in_array($subCategory, MARCAS)) {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
@@ -223,11 +211,7 @@ class Produtos extends Conexao
                 }
 
 
-            } else if ($category == "Grizzly" || $category == "Diamond" || $category == "Dgk" ||
-            $category == "Supra" || $category == "Stussy" || $category == "Primitive" ||
-            $category == "Huf" || $category == "Nike" || $category == "Adidas" ||
-            $category == "Puma" || $category == "Supra" || $category == "Vans" ||
-            $category == "New Balance" || $category == "Asics") {
+            } else if (in_array($category, MARCAS)) {
 
                 $stmt = Conexao::prepare("SELECT * FROM produtos where marca= :categoria ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                 $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
