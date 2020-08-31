@@ -2,6 +2,8 @@
 
 namespace Source\Controllers;
 
+use Source\Models\Produtos;
+
 class ProdutosCtrl{
     private $categoria;
     private $marcaProduto;
@@ -106,8 +108,15 @@ class ProdutosCtrl{
 
     public static function filtro(array $data) 
     {
-        
+        $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
+        $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
+        $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
+        $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
 
+        if (!(empty($marca) || empty($tamanho) || empty($cor) || empty($genero))) {
+
+            $result = Produtos::totalNumRows();
+        }
 
         echo json_encode($data);
     }

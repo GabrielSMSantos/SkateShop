@@ -42,14 +42,14 @@ class Web
         $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
 
         if (!empty($category) || !empty($subCategory)) {
-            $products = Produtos::paginacaoProdutos($category, $subCategory, $page);
+            $products = Produtos::totalNumRows($category, $subCategory, $page);
 
         } else if (!empty($busca)) {
             $url = "Busca";
-            $products = Produtos::paginacaoProdutos("Busca", $busca, $page);
+            $products = Produtos::totalNumRows("Busca", $busca, $page);
 
         } else {
-            $products = Produtos::paginacaoProdutos($category, $subCategory, $page);
+            $products = Produtos::totalNumRows($category, $subCategory, $page);
         }
 
         $totalPage = Produtos::$totalPaginas;

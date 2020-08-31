@@ -2,7 +2,7 @@
 
 namespace Source\Models;
 
-class Produtos extends Conexao
+class Produtos
 {
     private static $produtos_por_pagina = 12;
     public static $inicioExibir;
@@ -92,7 +92,7 @@ class Produtos extends Conexao
 
 
     // ESTA FUNCAO É PARA PEGAR O NUMERO TOTAL DE LINHAS DE REGISTROS NO BANCO DE ACORDO COM CADA CATEGORIA DE PRODUTOS SELECIONADO
-    public static function paginacaoProdutos(string $category, string $subCategory, int $paginaTemp): array
+    public static function totalNumRows(string $category, string $subCategory, int $paginaTemp): array
     {
         try {
 
@@ -105,18 +105,14 @@ class Produtos extends Conexao
                     $stmt->bindParam(':marca', $subCategory, \PDO::PARAM_STR, 15);
                     $stmt->execute();
 
-                } else if ($subCategory == "Camiseta" || $subCategory == "Camisa" || $subCategory == "Moletom" ||
-                    $subCategory == "Jaqueta" || $subCategory == "Calca" || $subCategory == "Bermuda" ||
-                    $subCategory == "Bone" || $subCategory == "Meia" || $subCategory == "Gorro" ||
-                    $subCategory == "Gorro" || $subCategory == "Mochila" || $subCategory == "Carteira" ||
-                    $subCategory == "Chaveiro") {
+                } else if (in_array($subCategory, ROUPAS) || in_array($subCategory, ACESSORIOS)) {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND subCategoria= :subCategoria");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
                     $stmt->bindParam(':subCategoria', $subCategory, \PDO::PARAM_STR, 15);
                     $stmt->execute();
 
-                } else if ($subCategory == "Masculino" || $subCategory == "Feminino") {
+                } else if ($subCategory == "Masculino" || $subCategory == "Feminino" || $subCategory == "Unissex") {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero");
                     $stmt->bindParam(':categoria', $categorys, \PDO::PARAM_STR, 12);
@@ -157,7 +153,7 @@ class Produtos extends Conexao
             self::$totalPaginas = ceil($stmt->rowCount() / self::$produtos_por_pagina);
 
 
-            return Produtos::buscarPorTipo($category, $subCategory, self::$inicioExibir);
+            return Produtos::searchProducts($category, $subCategory, self::$inicioExibir);
 
         } catch (\PDOException $e) {
             echo "ERROR: " . $e->getMessage();
@@ -165,7 +161,7 @@ class Produtos extends Conexao
     }
 
 
-    public static function buscarPorTipo(string $category, string $subCategory, int $inicioExibirTemp): array
+    public static function searchProducts(string $category, string $subCategory, int $inicioExibirTemp): array
     {
         try {
 
@@ -180,11 +176,7 @@ class Produtos extends Conexao
                     $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
 
-                } else if ($subCategory == "Camiseta" || $subCategory == "Camisa" || $subCategory == "Moletom" ||
-                    $subCategory == "Jaqueta" || $subCategory == "Calca" || $subCategory == "Bermuda" ||
-                    $subCategory == "Bone" || $subCategory == "Meia" || $subCategory == "Gorro" ||
-                    $subCategory == "Gorro" || $subCategory == "Mochila" || $subCategory == "Carteira" ||
-                    $subCategory == "Chaveiro") {
+                } else if (in_array($subCategory, ROUPAS) || in_array($subCategory, ACESSORIOS)) {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND subCategoria= :subCategoria ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
@@ -193,7 +185,7 @@ class Produtos extends Conexao
                     $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
 
-                } else if ($subCategory == "Masculino" || $subCategory == "Feminino") {
+                } else if ($subCategory == "Masculino" || $subCategory == "Feminino" || $subCategory == "Unissex") {
 
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
@@ -221,7 +213,7 @@ class Produtos extends Conexao
 
             } else if ($category == "Promocao" || $category == "PromocaoHome") {
 
-                if ($category == "Promoca") {
+                if ($category == "Promocao") {
                     $stmt = Conexao::prepare("SELECT * FROM produtos WHERE promocao > 0 ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':inicioExibir', $inicioExibirTemp, \PDO::PARAM_INT);
                     $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
