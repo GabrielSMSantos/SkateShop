@@ -6,6 +6,7 @@ $v->layout("_theme");
 <?php $v->end();
 
     if(count($products) > 0):
+        
 ?>
 
         <form id="filtros" data-action="<?= $router->route("ProdutosCtrl.filtro") ?>">

@@ -25,7 +25,7 @@ class Web
 
     public function home(): void
     {
-        $products = Produtos::buscarPorTipo("PromocaoHome", "", 0);
+        $products = Produtos::searchProducts("PromocaoHome", "", 0);
 
         echo $this->view->render("home", [
             "title" => "Home",
@@ -40,16 +40,17 @@ class Web
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
         $url = $category.(empty($data["subCategory"]) ? "" : "/".$data["subCategory"]);
         $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
+        $_SESSION["category"] = $category;
 
         if (!empty($category) || !empty($subCategory)) {
-            $products = Produtos::totalNumRows($category, $subCategory, $page);
+            $products = Produtos::searchProducts($category, $subCategory, $page);
 
         } else if (!empty($busca)) {
             $url = "Busca";
-            $products = Produtos::totalNumRows("Busca", $busca, $page);
+            $products = Produtos::searchProducts("Busca", $busca, $page);
 
         } else {
-            $products = Produtos::totalNumRows($category, $subCategory, $page);
+            $products = Produtos::searchProducts($category, $subCategory, $page);
         }
 
         $totalPage = Produtos::$totalPaginas;

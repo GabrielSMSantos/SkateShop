@@ -115,7 +115,7 @@ class ProdutosCtrl{
 
         if (!(empty($marca) || empty($tamanho) || empty($cor) || empty($genero))) {
 
-            $result = Produtos::totalNumRows();
+            $result = Produtos::totalNumRowsFiltro($_SESSION["category"], $marca, $tamanho, $cor, $genero);
         }
 
         echo json_encode($data);
