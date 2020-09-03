@@ -118,7 +118,7 @@ class ProdutosCtrl{
             $result = Produtos::totalNumRowsFiltro($_SESSION["category"], $marca, $tamanho, $cor, $genero);
         }
 
-        echo json_encode($data);
+        echo json_encode($result);
     }
 
     public static function buscarPorTipo(){

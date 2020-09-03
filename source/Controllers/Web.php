@@ -25,7 +25,7 @@ class Web
 
     public function home(): void
     {
-        $products = Produtos::searchProducts("PromocaoHome", "", 0);
+        $products = Produtos::searchProducts("PromocaoHome", "", 1);
 
         echo $this->view->render("home", [
             "title" => "Home",
@@ -53,13 +53,11 @@ class Web
             $products = Produtos::searchProducts($category, $subCategory, $page);
         }
 
-        $totalPage = Produtos::$totalPaginas;
-
         echo $this->view->render("produtos", [
             "title" => "Produtos",
             "products" => $products,
             "page" => $page,
-            "totalPage" => $totalPage,
+            "totalPage" => Produtos::$totalPaginas,
             "url" => $url
         ]);
     }
