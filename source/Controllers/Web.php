@@ -33,6 +33,29 @@ class Web
         ]);
     }
 
+    public function filtroProducts(array $data): void
+    {        
+        $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
+        $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
+        $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
+        $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
+        $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
+        $result = "";
+
+        if (!empty($marca) || !empty($tamanho) || !empty($cor) || !empty($genero)) {
+
+            $result = Produtos::totalNumRowsFiltro($_SESSION["category"], $marca, $tamanho, $cor, $genero, $page);
+        }
+
+        echo $this->view->render("produtos", [
+            "title" => "Produtos",
+            "products" => $result,
+            "page" => $page,
+            "totalPage" => Produtos::$totalPaginas,
+            "url" => "Filtro"
+        ]);
+    }
+
     public function products(array $data): void
     {
         $category = empty($data["category"]) ? "" : $data["category"];

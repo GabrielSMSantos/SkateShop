@@ -90,40 +90,82 @@ class Produtos
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public static function totalNumRowsFiltro(string $category, string $marca, string $tamanho, string $cor, string $genero): array
+    public static function totalNumRowsFiltro(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp): array
     {
         try{
 
             if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
 
                 if (in_array($marca, MARCAS)) {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca");
+                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca");
+                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
+                    $numRows->bindParam(':marca', $marca, \PDO::PARAM_STR);
+                    $numRows->execute();
+                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+
+                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
                     $stmt->bindParam(':marca', $marca, \PDO::PARAM_STR);
+                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
+                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
+
 
                 } else if (!empty($tamanho)) {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND tamanho= :tamanho");
+                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND tamanho= :tamanho");
+                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
+                    $numRows->bindParam(':tamanho', $tamanho, \PDO::PARAM_STR);
+                    $numRows->execute();
+                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+
+                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND tamanho= :tamanho ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
                     $stmt->bindParam(':tamanho', $tamanho, \PDO::PARAM_STR);
+                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
+                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
+
+                    
 
                 } else if (!empty($cor)) {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND cor= :cor");
+                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND cor= :cor");
+                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
+                    $numRows->bindParam(':cor', $cor, \PDO::PARAM_STR);
+                    $numRows->execute();
+                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+
+                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND cor= :cor ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
                     $stmt->bindParam(':cor', $cor, \PDO::PARAM_STR);
+                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
+                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
+
+                    
 
                 } else if (!empty($genero)) {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero");
+                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero");
+                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
+                    $numRows->bindParam(':genero', $genero, \PDO::PARAM_STR);
+                    $numRows->execute();
+                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+
+                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
                     $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
                     $stmt->bindParam(':genero', $genero, \PDO::PARAM_STR);
+                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
+                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
                     $stmt->execute();
+
+                    
                 }
 
+                    
+                // echo "Categoria: ". $category. " Marca: ". $marca. " Tamanho: ". $tamanho. " Cor: ". $cor. " Genero: ". $genero. "<br>";
+                    
+                Produtos::$quantLinhas = $stmt->rowCount();
+                return $stmt->fetchAll(\PDO::FETCH_ASSOC);
             }
-
-            return $stmt->rowCount();
 
         } catch(\PDOException $e) {
             echo "ERROR: ".$e->getMessage();

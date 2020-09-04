@@ -9,7 +9,7 @@ $v->layout("_theme");
         
 ?>
 
-        <form id="filtros" data-action="<?= $router->route("ProdutosCtrl.filtro") ?>">
+        <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
 
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
@@ -278,24 +278,24 @@ $v->layout("_theme");
             document.getElementById("modalExcluir").href = "../controler/deletarProduto.php?acao=Deletar&id=" + id;
         }
 
-        $("#filtros").on("submit", function(element){
-            element.preventDefault();
+        // $("#filtros").on("submit", function(element){
+        //     element.preventDefault();
 
-            var data = $(this).data();
-            var form = $(this).serialize();
+        //     var data = $(this).data();
+        //     var form = $(this).serialize();
 
-            console.log(data.action);
+        //     console.log(data.action);
 
-            $.post(data.action, form, function() {
+        //     $.post(data.action, form, function() {
 
-                console.log("sucesso!");
+        //         console.log("sucesso!");
 
-            }, "json" ).fail(function() {
-                console.log("ERROR");
+        //     }, "json" ).fail(function() {
+        //         console.log("ERROR");
 
-            });
+        //     });
 
-        });
+        // });
 
 
 

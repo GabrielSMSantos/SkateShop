@@ -60,15 +60,6 @@ class ProdutosCtrl{
         self::$url = $valor;
     }
 
-
-    public static function cadastrarProduto(){
-
-    }
-
-    public static function detalhesProduto(){
-
-    }
-
     /*public static function paginacaoProdutosCtrl($categoria, $marcaProduto, $subCategoria, $genero, $busca){
 
         if(isset($_GET["pagina"])){ // TIRANDO O GET PAGINA DA URL PARA PASSAR NOVAMENTE SOMENTE OS FILTROS DE CATEGORIA PARA OS BOTOES DE PAGINA
@@ -106,31 +97,22 @@ class ProdutosCtrl{
         return $produtos;
     }*/
 
-    public static function filtro(array $data) 
+    public function filtro(array $data) 
     {
+        session_start();
+        
         $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
         $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
         $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
         $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
+        $result = "";
 
-        if (!(empty($marca) || empty($tamanho) || empty($cor) || empty($genero))) {
+        if (!empty($marca) || !empty($tamanho) || !empty($cor) || !empty($genero)) {
 
             $result = Produtos::totalNumRowsFiltro($_SESSION["category"], $marca, $tamanho, $cor, $genero);
         }
 
         echo json_encode($result);
-    }
-
-    public static function buscarPorTipo(){
-        
-    }
-
-    public static function updateProduto(){
-        
-    }
-
-    public static function deletarProduto(){
-        
     }
 
 }

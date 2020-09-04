@@ -59,7 +59,7 @@ $router->get("/Configuracoes", "Web:adminconfigs", "web.adminconfigs");
  */
 $router->get("/{category}/pagina-{page}", "Web:products");
 $router->get("/{category}/{subCategory}/pagina-{page}", "Web:products");
-$router->post("/Filtro", "ProdutosCtrl:filtro", "ProdutosCtrl.filtro");
+$router->post("/Filtro", "Web:filtroProducts", "web.filtroProducts");
 
 $router->group("/Produto");
 $router->get("/{nameProduct}", "Web:detailProduct");
