@@ -90,6 +90,73 @@ class Produtos
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp): array
+    {
+        $sql = "SELECT * FROM produtos WHERE ";
+
+        if($category == "Roupas" || $category == "Calcados" || $category == "Acessorios"){
+
+            if(in_array($marca, MARCAS)) {
+                $sql .= "marca= :marca ";
+
+                if(!empty($tamanho)) {
+                    $sql .= "AND tamanho= :tamanho ";
+
+                } else if(in_array($cor, CORES)){
+                    $sql .= "AND cor= :cor ";
+
+                } else if(!empty($genero)) {
+                    $sql .= "AND genero= :genero ";
+                }
+
+            } else if(!empty($tamanho)){
+                $sql .= "tamanho= :tamanho ";
+
+                if(in_array($marca, MARCAS)) {
+                    $sql .= "AND marca= :marca ";
+
+                } else if(in_array($cor, CORES)) {
+                    $sql .= "AND cor= :cor ";
+
+                } else if(!empty($genero)) {
+                    $sql .= "AND genero= :genero ";
+                }
+
+            } else if(in_array($cor, CORES)) {
+                $sql .= "cor= :cor ";
+
+                if(in_array($marca, MARCAS)) {
+                    $sql .= "AND marca= :marca ";
+
+                } else if(!empty($tamanho)) {
+                    $sql .= "AND cor= :cor ";
+
+                } else if(!empty($genero)) {
+                    $sql .= "AND genero= :genero ";
+                }
+                
+            } else if(!empty($genero)) {
+                $sql .= "genero= :genero";
+
+                if(in_array($marca, MARCAS)) {
+                    $sql .= "AND marca= :marca ";
+
+                } else if(!empty($tamanho)) {
+                    $sql .= "AND tamanho= :tamanho ";
+
+                } else if(in_array($cor, CORES)) {
+                    $sql .= "AND cor= :cor ";
+                }
+            }
+
+
+
+            
+        }
+
+    }
+
+
     public static function totalNumRowsFiltro(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp): array
     {
         try{
