@@ -67,15 +67,15 @@ $v->layout("_theme");
 
                     <ul class="listaMarcasCategorias">    
                         <label for="GeneroMasc"><li>Masculino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroMasc" value="M">
+                        <input type="radio" name="chkGenero" id="GeneroMasc" value="Masculino">
                         <br>
 
                         <label for="GeneroFemi"><li>Feminino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroFemi" value="F">
+                        <input type="radio" name="chkGenero" id="GeneroFemi" value="Feminino">
                         <br>
 
                         <label for="GeneroUni"><li>Unissex</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroUni" value="F">
+                        <input type="radio" name="chkGenero" id="GeneroUni" value="Unissex">
 
                     </ul>
                     <br>

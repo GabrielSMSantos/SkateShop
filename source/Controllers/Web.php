@@ -44,7 +44,7 @@ class Web
 
         if (!empty($marca) || !empty($tamanho) || !empty($cor) || !empty($genero)) {
 
-            $result = Produtos::totalNumRowsFiltro($_SESSION["category"], $marca, $tamanho, $cor, $genero, $page);
+            $result = Produtos::FiltroProducts($_SESSION["category"], $marca, $tamanho, $cor, $genero, $page);
         }
 
         echo $this->view->render("produtos", [
