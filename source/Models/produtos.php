@@ -90,6 +90,12 @@ class Produtos
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
+    public static function calculoPaginacao(int $statement, int $paginaAtual): void
+    {
+        self::$inicioExibir = (self::$produtos_por_pagina * $paginaAtual) - self::$produtos_por_pagina;
+        self::$totalPaginas = ceil($statement / self::$produtos_por_pagina);
+    }
+
     public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp): array
     {
         $sql = "SELECT * FROM produtos WHERE ";
@@ -135,17 +141,7 @@ class Produtos
             } else if(!empty($tamanho)){
                 $sql .= "tamanho= '$tamanho' ";
 
-                if(in_array($marca, MARCAS)) {
-                    $sql .= "AND marca= '$marca' ";
-
-                    if(!empty($cor)) {
-                        $sql .= "AND cor= '$cor' ";
-    
-                    } else if(!empty($genero)) {
-                        $sql .= "AND genero= '$genero' ";
-                    }
-
-                } else if(!empty($cor)) {
+                if(!empty($cor)) {
                     $sql .= "AND cor= '$cor' ";
 
                     if(!empty($genero)) {
@@ -156,39 +152,14 @@ class Produtos
                     $sql .= "AND genero= '$genero' ";
                 }
 
-            } else if(!empty($cor)) {
-                $sql .= "cor= '$cor' ";
-
-                if(in_array($marca, MARCAS)) {
-                    $sql .= "AND marca= '$marca' ";
-
-                } else if(!empty($tamanho)) {
-                    $sql .= "AND cor= '$cor' ";
-
-                } else if(!empty($genero)) {
-                    $sql .= "AND genero= '$genero' ";
-                }
-                
-            } else if(!empty($genero)) {
-                $sql .= "genero= '$genero'";
-
-                if(in_array($marca, MARCAS)) {
-                    $sql .= "AND marca= '$marca' ";
-
-                } else if(!empty($tamanho)) {
-                    $sql .= "AND tamanho= '$tamanho' ";
-
-                } else if(!empty($cor)) {
-                    $sql .= "AND cor= '$cor' ";
-                }
-            }
+            } 
 
             try{
                 $numRows = Conexao::prepare($sql);
                 $numRows->execute();
                 self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
                 
-                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", ".self::$produtos_por_pagina." ";
+                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
                 $stmt = Conexao::prepare($sql);
                 $stmt->execute();
 
@@ -200,17 +171,43 @@ class Produtos
             
         }
 
-    }
-
-    public static function calculoPaginacao(int $statement, int $paginaAtual): void
-    {
-        self::$inicioExibir = (self::$produtos_por_pagina * $paginaAtual) - self::$produtos_por_pagina;
-        self::$totalPaginas = ceil($statement / self::$produtos_por_pagina);
     }  
 
 
     public static function searchProducts(string $category, string $subCategory, int $paginaTemp): array
     {
+
+        $sql = "SELECT * FROM produtos ";
+
+
+        if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
+
+            if (in_array($subCategory, MARCAS)) {
+                $sql .= "WHERE categoria= '$category' AND marca= '$subCategory' ";
+
+            } else if (in_array($subCategory, ROUPAS) || in_array($subCategory, ACESSORIOS)) {
+                $sql .= "WHERE categoria= '$category' AND subCategoria= '$subCategory' ";
+
+            } else if ($subCategory == "Masculino" || $subCategory == "Feminino" || $subCategory == "Unissex") {
+                $sql .= "WHERE categoria= '$category' AND genero= '$subCategory' ";                
+
+            } else {
+                $sql .= "WHERE categoria= '$category' ";
+
+            }
+
+        } else if (in_array($category, MARCAS)) {
+            $sql .= "WHERE marca= '$category' ";
+
+        } else if ($category == "Promocao" || $category == "PromocaoHome") {
+            $sql .= "WHERE promocao > 0 ";
+
+        } else if ($category == "Busca") {
+            $sql .= "where nomeProduto LIKE %'$subCategory'% ";
+
+        }
+
+        
         try {
 
             if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
