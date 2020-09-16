@@ -42,6 +42,8 @@ class Web
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
         $result = "";
 
+        echo $_SERVER["REQUEST_URI"];
+
         if (!empty($marca) || !empty($tamanho) || !empty($cor) || !empty($genero)) {
 
             $result = Produtos::FiltroProducts($_SESSION["category"], $marca, $tamanho, $cor, $genero, $page);
@@ -64,6 +66,11 @@ class Web
         $url = $category.(empty($data["subCategory"]) ? "" : "/".$data["subCategory"]);
         $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
         $_SESSION["category"] = $category;
+
+        echo $_SERVER["REQUEST_URI"];
+        
+        $objProdutos = new Produtos();
+
 
         if (!empty($category) || !empty($subCategory)) {
             $products = Produtos::searchProducts($category, $subCategory, $page);

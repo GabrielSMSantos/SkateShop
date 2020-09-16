@@ -154,6 +154,7 @@ $v->layout("_theme");
 <div id="mainProdutos">
     
     <?php
+    echo $_SERVER["REQUEST_URI"];
 
     if(count($products) > 0):
 

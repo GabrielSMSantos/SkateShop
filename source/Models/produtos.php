@@ -152,7 +152,16 @@ class Produtos
                     $sql .= "AND genero= '$genero' ";
                 }
 
-            } 
+            } else if (!empty($cor)) {
+                $sql .= "cor = '$cor' ";
+
+                if (!empty($genero)) {
+                    $sql .= "AND genero= '$genero' ";
+                }
+
+            } else {
+                $sql .= "genero= '$genero' ";
+            }
 
             try{
                 $numRows = Conexao::prepare($sql);
@@ -203,131 +212,29 @@ class Produtos
             $sql .= "WHERE promocao > 0 ";
 
         } else if ($category == "Busca") {
-            $sql .= "where nomeProduto LIKE %'$subCategory'% ";
-
+            $sql .= "WHERE nomeProduto LIKE %'$subCategory'% ";
         }
 
-        
         try {
-
-            if ($category == "Roupas" || $category == "Calcados" || $category == "Acessorios") {
-
-                if (in_array($subCategory, MARCAS)) {
-                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca");
-                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $numRows->bindParam(':marca', $subCategory, \PDO::PARAM_STR, 15);
-                    $numRows->execute();
-                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND marca= :marca ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                    $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $stmt->bindParam(':marca', $subCategory, \PDO::PARAM_STR, 15);
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                    $stmt->execute();
-
-                } else if (in_array($subCategory, ROUPAS) || in_array($subCategory, ACESSORIOS)) {
-                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND subCategoria= :subCategoria");
-                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $numRows->bindParam(':subCategoria', $subCategory, \PDO::PARAM_STR, 15);
-                    $numRows->execute();
-                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND subCategoria= :subCategoria ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                    $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $stmt->bindParam(':subCategoria', $subCategory, \PDO::PARAM_STR, 15);
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                    $stmt->execute();
-
-                } else if ($subCategory == "Masculino" || $subCategory == "Feminino" || $subCategory == "Unissex") {
-                    $numRows = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero");
-                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $numRows->bindParam(':genero', $subCategory, \PDO::PARAM_STR, 10);
-                    $numRows->execute();
-                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE categoria= :categoria AND genero= :genero ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                    $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $stmt->bindParam(':genero', $subCategory, \PDO::PARAM_STR, 10);
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                    $stmt->execute();
-
-                } else {
-                    $numRows = Conexao::prepare("SELECT * FROM produtos where categoria= :categoria");
-                    $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $numRows->execute();
-                    self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                    $stmt = Conexao::prepare("SELECT * FROM produtos where categoria= :categoria ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                    $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                    $stmt->execute();
-                }
-
-
-            } else if (in_array($category, MARCAS)) {
-                $numRows = Conexao::prepare("SELECT * FROM produtos where marca= :categoria");
-                $numRows->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                $numRows->execute();
-                self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                $stmt = Conexao::prepare("SELECT * FROM produtos where marca= :categoria ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                $stmt->bindParam(':categoria', $category, \PDO::PARAM_STR, 12);
-                $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                $stmt->execute();
-
-            } else if ($category == "Promocao" || $category == "PromocaoHome") {
-
-                $numRows = Conexao::prepare("SELECT * FROM produtos WHERE promocao > 0");
-                $numRows->execute();
-                self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                if ($category == "Promocao") {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE promocao > 0 ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                    $stmt->execute();
-
-                } else {
-                    $stmt = Conexao::prepare("SELECT * FROM produtos WHERE promocao > 0 ORDER BY id desc limit :inicioExibir, 4");
-                    $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                    $stmt->execute();
-                }
-
-            } else if ($category == "Busca") {
-
-                $busca = "%".$subCategory."%";
-                $numRows = Conexao::prepare("SELECT * FROM produtos where nomeProduto LIKE :busca");
-                $numRows->bindParam(':busca', $busca, \PDO::PARAM_STR);
-                $numRows->execute();
-                self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                $stmt = Conexao::prepare("SELECT * FROM produtos where nomeProduto LIKE :busca ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                $stmt->bindParam(':busca', $busca, \PDO::PARAM_STR);
-                $stmt->bindParam(':inicioExibir',self::$inicioExibir, \PDO::PARAM_INT);
-                $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                $stmt->execute();
-
+            $numRows = Conexao::prepare($sql);
+            $numRows->execute();
+            self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+    
+            if ($category == "PromocaoHome") {
+                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", 4";
+    
             } else {
-                $numRows = Conexao::prepare("SELECT * FROM produtos");
-                $numRows->execute();
-                self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-
-                $stmt = Conexao::prepare("SELECT * FROM produtos ORDER BY id desc limit :inicioExibir, :produtos_por_pagina");
-                $stmt->bindParam(':inicioExibir', self::$inicioExibir, \PDO::PARAM_INT);
-                $stmt->bindParam(':produtos_por_pagina', self::$produtos_por_pagina, \PDO::PARAM_INT);
-                $stmt->execute();
+                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
             }
-
+    
+            $stmt = Conexao::prepare($sql);
+            $stmt->execute();
+    
             Produtos::$quantLinhas = $stmt->rowCount();
-            return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            return $stmt->fetchAll(\PDO::FETCH_ASSOC);   
 
-        } catch (\PDOException $e) {
-            echo "Error ".$e->getMessage();
+        } catch (\PDOExecption $e) {
+            echo "ERROR: ".$e->getMessage();
         }
 
     }
