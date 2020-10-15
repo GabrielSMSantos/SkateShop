@@ -40,8 +40,6 @@
 
 ***
 
-<br>
-
 <div style ="display: flex; align-items: center;">
     <img src="Github/iconTech.png" height="40" align="left"> 
     <h2>Tecnologias</h2>
@@ -64,14 +62,11 @@
 
 ***
 
-<br>
-
 <div style ="display: flex; align-items: center;">
     <img src="Github/iconDesignPattern.png" height="40" align="left"> 
     <h2>Design Pattern</h2>
 </div>
 
-<br>
 
 #### Foi aplicado padrão de projeto para que o código tenha maior durabilidade e facilidade na manutenção. Design Pattern utilizado:
 
