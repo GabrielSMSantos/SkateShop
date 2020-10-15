@@ -44,7 +44,7 @@
 
 <div style ="display: flex; align-items: center;">
     <img src="Github/iconTech.png" height="40" align="left"> 
-    <h2>&nbsp; Tecnologias</h2>
+    <h2>Tecnologias</h2>
 </div>
 
 <br>
@@ -68,7 +68,7 @@
 
 <div style ="display: flex; align-items: center;">
     <img src="Github/iconDesignPattern.png" height="40" align="left"> 
-    <h2>&nbsp; Design Pattern</h2>
+    <h2>Design Pattern</h2>
 </div>
 
 <br>
@@ -76,9 +76,9 @@
 #### Foi aplicado padrão de projeto para que o código tenha maior durabilidade e facilidade na manutenção. Design Pattern utilizado:
 
 <div style ="display: flex; align-items: center;">
-&nbsp;&nbsp;&nbsp;&nbsp;
+
 <img src="Github/iconOk.png" height="20" align="left"> 
-&nbsp;
+
 MVC (MODEL - VIEW - CONTROLLER)
 </div>
 
