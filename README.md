@@ -1,7 +1,7 @@
-<div style="text-align:center;"><img src="Github/logoSkateShop.png" ></div>
+<div align="center"><img src="Github/logoSkateShop.png"></div>
 <br>
 
-> <h3 style="text-align:center"><i> Este é um Projeto para fins de estudo.</i></h3>
+> <h3 align="center"><i> Este é um Projeto para fins de estudo.</i></h3>
 
 <br><br>
 
