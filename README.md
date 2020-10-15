@@ -29,8 +29,8 @@
 ***
 
 <div style="align-text:center;">
-    <img src="Github/Web.gif" height="500">
-    <img src="Github/Mobile.gif" height="500">
+    <img src="Github/Web.gif" width="801">
+    <img src="Github/Mobile.gif" width="250">
 </div>
 
 ***
