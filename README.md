@@ -23,6 +23,11 @@
     - Carteira
     - Chaveiro
 - Peças para Skate
+    - Shape
+    - Rolamento
+    - Trucks
+    - Rodas
+    - Lixas
 
 #### Todos produtos são de marcas consolidadas no mercado de skate com alta qualidade.
 
