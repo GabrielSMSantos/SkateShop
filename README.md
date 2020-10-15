@@ -43,7 +43,7 @@
 <br>
 
 <div style ="display: flex; align-items: center;">
-    <img src="Github/iconTech.png" height="40"> 
+    <img src="Github/iconTech.png" height="40" align="left"> 
     <h2>&nbsp; Tecnologias</h2>
 </div>
 
@@ -67,7 +67,7 @@
 <br>
 
 <div style ="display: flex; align-items: center;">
-    <img src="Github/iconDesignPattern.png" height="40"> 
+    <img src="Github/iconDesignPattern.png" height="40" align="left"> 
     <h2>&nbsp; Design Pattern</h2>
 </div>
 
@@ -77,7 +77,7 @@
 
 <div style ="display: flex; align-items: center;">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<img src="Github/iconOk.png" height="20"> 
+<img src="Github/iconOk.png" height="20" align="left"> 
 &nbsp;
 MVC (MODEL - VIEW - CONTROLLER)
 </div>
