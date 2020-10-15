@@ -77,6 +77,4 @@
 MVC (MODEL - VIEW - CONTROLLER)
 </div>
 
-<br>
-
 #### Nele é divido o projeto em 3, o Model é responsável em fazer a comunicação com o Banco de Dados, Já o View, exibir a parte visual e interativa com o usuário, No caso do Controller, ele será uma peça importante para que este Design Pattern funcione, o Controller será um intermediador entre Model e View, ele pegará os dados fornecidos pelo usuário no View e enviará para o Model, a resposta dada pelo Model será enviada para o View. Assim o usuário verá o resultado final.
