@@ -6,7 +6,6 @@ $v->layout("_theme");
 <?php $v->end();
 
     if(count($products) > 0):
-        
 ?>
 
         <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
@@ -133,28 +132,27 @@ $v->layout("_theme");
         <button type="submit" class="btn btn-success">
             <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
             Filtrar
-        </button>
+        </button>   
 </form>
 
 
-<div id="ordemProdutos">
+<form id="ordemProdutos" method="post" action="<?= url($url); ?>">
     <p>Ordem: </p>
     <select name="ordem" id="dropdownOrdemProdutos">
-        <option value="Lançamento">Lançamento</option>
+        <option value="Lancamentos">Lançamentos</option>
         <option value="menorPreco">Menor Preço</option>
         <option value="maiorPreco">Maior Preço</option>
-        <option value="nome">Nome</option>
+        <option value="alfabetica">Alfabética</option>
         <option value="relevancia">Relevância</option>
     </select>
-</div>
+    <input id="btnOrdem" type="submit">
+</form>
 <?php endif; ?>
-
 
 
 <div id="mainProdutos">
     
     <?php
-    echo $_SERVER["REQUEST_URI"];
 
     if(count($products) > 0):
 
@@ -275,28 +273,79 @@ $v->layout("_theme");
 
     <?php $v->start("scripts"); ?>
     <script type="text/javascript">
+        $(document).ready(function(){
+            var url = sliceUrl();
+
+            if (url.search(/pagina-[0-9]/) > -1) {
+                $("#dropdownOrdemProdutos").val("Lancamentos");
+
+            } else if (url.search("Filtro") > -1) {
+                $("#dropdownOrdemProdutos").val("Lancamentos");
+
+                
+                
+            } else {
+                $("#dropdownOrdemProdutos").val(url);
+
+                $(".page-link").each(function(index, item){
+                    var link = $(this).prop("href") + "/" + url;
+                    $(this).prop("href", link);
+                });
+            }
+
+        });
+
+        function sliceUrl(){
+            var url = window.location.href;
+            url = url.slice(url.lastIndexOf("/") + 1);
+            
+            return url;
+        }
+
         function excluirProduto(id) {
             document.getElementById("modalExcluir").href = "../controler/deletarProduto.php?acao=Deletar&id=" + id;
         }
 
-        // $("#filtros").on("submit", function(element){
-        //     element.preventDefault();
+        $("#dropdownOrdemProdutos").change(function(){
+            $("#btnOrdem").click();
+        });
 
-        //     var data = $(this).data();
-        //     var form = $(this).serialize();
+        $("#btnOrdem").click(function(){
+            var dropDown = $("#dropdownOrdemProdutos").val();
+            var url = window.location.href;
 
-        //     console.log(data.action);
 
-        //     $.post(data.action, form, function() {
+            if (sliceUrl().search(/pagina-[0-9]/) > -1) {
 
-        //         console.log("sucesso!");
+                if (url.slice(url.lastIndexOf("/") + 1).search(/pagina-[0-9]/) > -1) {
+                    url = url + "/" + dropDown;
 
-        //     }, "json" ).fail(function() {
-        //         console.log("ERROR");
+                } else {
+                    var ordem = url.slice(url.lastIndexOf("/"));
+                    url = url.substring(0, url.length - ordem.length) + "/" + dropDown;
+                    url = url.replace(/pagina-[0-9]/, "pagina-1");
 
-        //     });
+                }
+                
+            } else {
 
-        // });
+                if (url.indexOf("Filtro")) {
+
+                    if (url.slice(url.lastIndexOf("/") + 1).search(/pagina-[0-9]/) > -1 || url.slice(url.lastIndexOf("/") + 1) == "Filtro") {
+                        url = url + "/pagina-1/" + dropDown;
+
+                    } else {
+                        var ordem = url.slice(url.lastIndexOf("/"));
+                        url = url.substring(0, url.length - ordem.length) + "/" + dropDown; 
+                        url = url.replace(/pagina-[0-9]/, "pagina-1");   
+                    }
+                    
+                }
+                
+            }
+
+            $("#ordemProdutos").attr("action", url);
+        });
 
 
 

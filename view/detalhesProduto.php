@@ -3,12 +3,23 @@ $v->layout("_theme");
 
       $v->start("cssThisPage");
 ?>      <link rel="stylesheet" href="<?= url("view/css/detalhesProduto.css"); ?>">
-<?php $v->end(); ?>
+<?php $v->end(); 
+
+echo "<br>";
+var_dump($product);
+?>
 
 <div id="fotosProduto">
 
-    <img src="<?= url($product["imagem"]); ?>" class="fotosEmAngulosDiferentes">
+    <?php 
+        for ($i = 0; $i < Produtos::$quantLinhas; $i++):
+    ?>
 
+            <img src="<?= url($value[$i]["imagem"]); ?>" class="fotosEmAngulosDiferentes">
+
+    <?php
+        endfor;
+    ?>
 
     <!-- $data2 = $conn->query("SELECT * FROM produtos WHERE categoria='".$categoria."' and subCategoria='".$subCategoria."' and modelo='".$modelo."'"); -->
 
@@ -37,7 +48,7 @@ $v->layout("_theme");
 
     <p>Cor <br>
         <a href="detalhesProduto.php?id=<?= $product["id"] ?>">
-            <div class="cor" style="background: #<?= $product["cor"] ?>"></div>
+            <div class="cor" style="background: #<?= CORES[$product["cor"]] ?>"></div>
         </a>
 
 

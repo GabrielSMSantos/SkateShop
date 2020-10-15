@@ -76,7 +76,7 @@ class Produtos
 
         Produtos::$quantLinhas = $stmt->rowCount();
 
-        return $stmt->fetch(\PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function detalhesProdutoCart(int $id): array
@@ -96,7 +96,7 @@ class Produtos
         self::$totalPaginas = ceil($statement / self::$produtos_por_pagina);
     }
 
-    public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp): array
+    public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp, string $ordem): array
     {
         $sql = "SELECT * FROM produtos WHERE ";
 
@@ -167,8 +167,31 @@ class Produtos
                 $numRows = Conexao::prepare($sql);
                 $numRows->execute();
                 self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
+
+                switch ($ordem) {
+                    case "Lancamentos":
+                        $sql .= "ORDER BY id desc ";
+                    break;
+    
+                    case "menorPreco":
+                        $sql .= "ORDER BY preco asc ";
+                    break;
+    
+                    case "maiorPreco":
+                        $sql .= "ORDER BY preco desc ";
+                    break;
+    
+                    case "alfabetica":
+                        $sql .= "ORDER BY nomeProduto asc ";
+                    break;
+    
+                    case "relevancia":
+                        $sql .= "ORDER BY id desc ";
+                    break;
+                }
                 
-                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
+                $sql .= "limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
+                
                 $stmt = Conexao::prepare($sql);
                 $stmt->execute();
 
@@ -183,7 +206,7 @@ class Produtos
     }  
 
 
-    public static function searchProducts(string $category, string $subCategory, int $paginaTemp): array
+    public static function searchProducts(string $category, string $subCategory, int $paginaTemp, string $ordem): array
     {
 
         $sql = "SELECT * FROM produtos ";
@@ -212,21 +235,43 @@ class Produtos
             $sql .= "WHERE promocao > 0 ";
 
         } else if ($category == "Busca") {
-            $sql .= "WHERE nomeProduto LIKE %'$subCategory'% ";
+            $sql .= "WHERE nomeProduto LIKE '%$subCategory%' ";
         }
 
         try {
             $numRows = Conexao::prepare($sql);
             $numRows->execute();
             self::calculoPaginacao($numRows->rowCount(), $paginaTemp);
-    
-            if ($category == "PromocaoHome") {
-                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", 4";
-    
-            } else {
-                $sql .= "ORDER BY id desc limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
+
+            switch ($ordem) {
+                case "Lancamentos":
+                    $sql .= "ORDER BY id desc ";
+                break;
+
+                case "menorPreco":
+                    $sql .= "ORDER BY preco asc ";
+                break;
+
+                case "maiorPreco":
+                    $sql .= "ORDER BY preco desc ";
+                break;
+
+                case "alfabetica":
+                    $sql .= "ORDER BY nomeProduto asc ";
+                break;
+
+                case "relevancia":
+                    $sql .= "ORDER BY id desc ";
+                break;
             }
     
+            if ($category == "PromocaoHome") {
+                $sql .= "limit ".self::$inicioExibir.", 4";
+    
+            } else {
+                $sql .= "limit ".self::$inicioExibir.", ".self::$produtos_por_pagina;
+            }
+
             $stmt = Conexao::prepare($sql);
             $stmt->execute();
     

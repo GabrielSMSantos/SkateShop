@@ -5,6 +5,7 @@ namespace Source\Controllers;
 use League\Plates\Engine;
 use Source\Models\Produtos;
 use Source\Models\Usuarios;
+use Source\Controllers\ProdutosController;
 
 class Web
 {
@@ -25,7 +26,7 @@ class Web
 
     public function home(): void
     {
-        $products = Produtos::searchProducts("PromocaoHome", "", 1);
+        $products = Produtos::searchProducts("PromocaoHome", "", 1, "Lancamentos");
 
         echo $this->view->render("home", [
             "title" => "Home",
@@ -33,25 +34,73 @@ class Web
         ]);
     }
 
-    public function filtroProducts(array $data): void
-    {        
-        $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
-        $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
-        $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
-        $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
+    public function ordemProducts(array $data): void
+    {
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
-        $result = "";
+        $ordem = empty($data["order"]) ? "Lancamentos" : $data["order"];
 
-        echo $_SERVER["REQUEST_URI"];
+        if (isset($data["category"]) || isset($data["subCategory"])) {
+            $category = empty($data["category"]) ? "" : $data["category"];
+            $subCategory = empty($data["subCategory"]) ? "" : $data["subCategory"];
+            $url = $category.(empty($data["subCategory"]) ? "" : "/".$data["subCategory"]);
+            $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
+            $dataProducts = array($category, $subCategory, $url, $busca, $page, "Header");
+            
+            if (!empty($category) || !empty($subCategory)) {
+                $products = Produtos::searchProducts($category, $subCategory, $page, $ordem);
 
-        if (!empty($marca) || !empty($tamanho) || !empty($cor) || !empty($genero)) {
+            } else if (!empty($busca)) {
+                $url = "Busca";
+                $products = Produtos::searchProducts("Busca", $busca, $page, $ordem);
 
-            $result = Produtos::FiltroProducts($_SESSION["category"], $marca, $tamanho, $cor, $genero, $page);
+            } else {
+                $products = Produtos::searchProducts($category, $subCategory, $page, $ordem);
+            }
+
+        } else {
+            if (isset($_SESSION["dataFiltro"][0]) || isset($_SESSION["dataFiltro"][1]) || isset($_SESSION["dataFiltro"][2]) || isset($_SESSION["dataFiltro"][3])) {
+                $products = Produtos::FiltroProducts($_SESSION["category"], $_SESSION["dataFiltro"][0], $_SESSION["dataFiltro"][1], 
+                                                   $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], $page, $ordem);
+
+                $url = "Filtro";
+            }
         }
+ 
 
         echo $this->view->render("produtos", [
             "title" => "Produtos",
+            "products" => $products,
+            "order" => $ordem,
+            "page" => $page,
+            "totalPage" => Produtos::$totalPaginas,
+            "url" => $url
+        ]);
+    }
+
+    public function filtroProducts(array $data): void
+    {       
+        $page = empty($data["page"]) ? 1 : str_replace("-", "", filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
+        
+        if ($page == 1) {
+            $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
+            $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
+            $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
+            $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
+            $_SESSION["dataFiltro"] = array($marca, $tamanho, $cor, $genero);
+        }
+            
+
+        if (isset($_SESSION["dataFiltro"][0]) || isset($_SESSION["dataFiltro"][1]) || isset($_SESSION["dataFiltro"][2]) || isset($_SESSION["dataFiltro"][3])) {
+            $result = Produtos::FiltroProducts($_SESSION["category"], $_SESSION["dataFiltro"][0], $_SESSION["dataFiltro"][1], 
+                                               $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], $page, "Lancamentos");
+        } else {
+            $result = "";
+        }
+        
+        echo $this->view->render("produtos", [
+            "title" => "Produtos",
             "products" => $result,
+            "order" => "Lancamentos",
             "page" => $page,
             "totalPage" => Produtos::$totalPaginas,
             "url" => "Filtro"
@@ -65,30 +114,30 @@ class Web
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
         $url = $category.(empty($data["subCategory"]) ? "" : "/".$data["subCategory"]);
         $busca = empty($_POST["busca"]) ? "" : filter_var($_POST["busca"], FILTER_SANITIZE_STRING);
+        $dataProducts = array($category, $subCategory, $url, $busca, $page, "Header");
         $_SESSION["category"] = $category;
 
-        echo $_SERVER["REQUEST_URI"];
-        
-        $objProdutos = new Produtos();
-
+        // echo $_SERVER["REQUEST_URI"];
 
         if (!empty($category) || !empty($subCategory)) {
-            $products = Produtos::searchProducts($category, $subCategory, $page);
+            $products = Produtos::searchProducts($category, $subCategory, $page, "Lancamentos");
 
         } else if (!empty($busca)) {
             $url = "Busca";
-            $products = Produtos::searchProducts("Busca", $busca, $page);
+            $products = Produtos::searchProducts("Busca", $busca, $page, "Lancamentos");
 
         } else {
-            $products = Produtos::searchProducts($category, $subCategory, $page);
+            $products = Produtos::searchProducts($category, $subCategory, $page, "Lancamentos");
         }
 
         echo $this->view->render("produtos", [
             "title" => "Produtos",
             "products" => $products,
+            "order" => "Lancamentos",
             "page" => $page,
             "totalPage" => Produtos::$totalPaginas,
-            "url" => $url
+            "url" => $url,
+            "data" => json_encode($dataProducts)
         ]);
     }
 
@@ -99,7 +148,7 @@ class Web
         $product = Produtos::detalhesProduto($nameProduct);
 
         echo $this->view->render("detalhesProduto", [
-            "title" => $data["nameProduct"],
+            "title" => str_replace("-", " ", $data["nameProduct"]),
             "product" => $product
         ]);
     }

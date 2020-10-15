@@ -58,8 +58,25 @@ $router->get("/Configuracoes", "Web:adminconfigs", "web.adminconfigs");
  * Produtos
  */
 $router->get("/{category}/pagina-{page}", "Web:products");
+
+// Alterar Ordem de Exibição dos Produtos
+$router->post("/{category}/pagina-{page}/{order}", "Web:ordemProducts");
+$router->get("/{category}/pagina-{page}/{order}", "Web:ordemProducts");
+// ===================================================================||
+
 $router->get("/{category}/{subCategory}/pagina-{page}", "Web:products");
-$router->post("/Filtro", "Web:filtroProducts", "web.filtroProducts");
+
+// Alterar Ordem de Exibição dos Produtos
+$router->post("/{category}/{subCategory}/pagina-{page}/{order}", "Web:ordemProducts");
+$router->get("/{category}/{subCategory}/pagina-{page}/{order}", "Web:ordemProducts");
+// =================================================================================||
+
+$router->group("/Filtro");
+$router->post("/", "Web:filtroProducts", "web.filtroProducts");
+$router->get("/pagina-{page}", "Web:filtroProducts");
+
+$router->get("/pagina-{page}/{order}", "Web:ordemProducts");
+$router->post("/pagina-{page}/{order}", "Web:ordemProducts");
 
 $router->group("/Produto");
 $router->get("/{nameProduct}", "Web:detailProduct");

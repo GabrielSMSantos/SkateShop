@@ -71,6 +71,10 @@
             padding: 5px;
         }
 
+        #btnOrdem {
+            display: none;
+        }
+
     #mainProdutos{
         display: grid;
         grid-area: produtos;
