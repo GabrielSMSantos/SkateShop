@@ -162,7 +162,7 @@ $v->layout("_theme");
         <div class="Produtos">
 
             <div class="divImg">
-                <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])); ?>">
+                <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])."/".$product["cor"]); ?>">
                     <img class="Imagem" src="<?= url($product["imagem"]); ?>">
                 </a>
             </div>

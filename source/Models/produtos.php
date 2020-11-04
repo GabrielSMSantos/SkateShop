@@ -96,14 +96,21 @@ class Produtos
         self::$totalPaginas = ceil($statement / self::$produtos_por_pagina);
     }
 
-    public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, int $paginaTemp, string $ordem): array
+    public static function FiltroProducts(string $category, string $marca, string $tamanho, string $cor, string $genero, string $busca,int $paginaTemp, string $ordem): array
     {
         $sql = "SELECT * FROM produtos WHERE ";
 
-        if($category == "Roupas" || $category == "Calcados" || $category == "Acessorios"){
+        if($category == "Roupas" || $category == "Calcados" || $category == "Acessorios" || $category == "Busca"){
+
+            if ($category == "Busca") {
+                $sql .= "nomeProduto LIKE '%$busca%' ";
+
+            } else {
+                $sql .= "categoria= '$category' ";
+            }
 
             if(in_array($marca, MARCAS)) {
-                $sql .= "marca= '$marca' ";
+                $sql .= "AND marca= '$marca' ";
 
                 if(!empty($tamanho)) {
                     $sql .= "AND tamanho= '$tamanho' ";
@@ -139,7 +146,7 @@ class Produtos
                 }
 
             } else if(!empty($tamanho)){
-                $sql .= "tamanho= '$tamanho' ";
+                $sql .= "AND tamanho= '$tamanho' ";
 
                 if(!empty($cor)) {
                     $sql .= "AND cor= '$cor' ";
@@ -153,14 +160,12 @@ class Produtos
                 }
 
             } else if (!empty($cor)) {
-                $sql .= "cor = '$cor' ";
+                $sql .= "AND cor= '$cor' ";
 
                 if (!empty($genero)) {
                     $sql .= "AND genero= '$genero' ";
                 }
 
-            } else {
-                $sql .= "genero= '$genero' ";
             }
 
             try{

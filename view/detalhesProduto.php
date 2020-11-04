@@ -4,21 +4,17 @@ $v->layout("_theme");
       $v->start("cssThisPage");
 ?>      <link rel="stylesheet" href="<?= url("view/css/detalhesProduto.css"); ?>">
 <?php $v->end(); 
-
-echo "<br>";
-var_dump($product);
 ?>
 
 <div id="fotosProduto">
 
     <?php 
-        for ($i = 0; $i < Produtos::$quantLinhas; $i++):
+        foreach ($product as $value):
     ?>
-
-            <img src="<?= url($value[$i]["imagem"]); ?>" class="fotosEmAngulosDiferentes">
+            <img src="<?= url($value["imagem"]); ?>" class="fotosEmAngulosDiferentes" data-color="<?= $value["cor"]; ?>">
 
     <?php
-        endfor;
+        endforeach;
     ?>
 
     <!-- $data2 = $conn->query("SELECT * FROM produtos WHERE categoria='".$categoria."' and subCategoria='".$subCategoria."' and modelo='".$modelo."'"); -->
@@ -26,39 +22,48 @@ var_dump($product);
 </div>
 <div id="imagemProduto">
 
-    <img id="imgProduto" src="<?= url($product["imagem"]); ?>">
+    <img id="imgProduto" src="<?= url($product[0]["imagem"]); ?>" >
 </div>
 <div id="fotosProdutoMobile">
-    <img src="<?= url($product["imagem"]); ?>" class="fotosEmAngulosDiferentes">
+    <img src="<?= url($product[0]["imagem"]); ?>" class="fotosEmAngulosDiferentes" data-color="<?= $product["cor"]; ?>">
 </div>
 
 <div id="infoCompra">
-                <h2><?= $product["subCategoria"]." ".$product["marca"]." ".$product["modelo"]; ?></h2>
+                <h2><?= $product[0]["subCategoria"]." ".$product[0]["marca"]." ".$product[0]["modelo"]; ?></h2>
                 <br>
 
 
-                <p>Preço  <h3 id="<?php if($product["promocao"] != 0){ echo "precoVelho"; }else{ echo "preco";} ?>">
-    R$ <?= number_format($product["preco"], 2, ",", "."); ?></h3></p>
+                <p>Preço  <h3 id="<?php if($product[0]["promocao"] != 0){ echo "precoVelho"; }else{ echo "preco";} ?>">
+    R$ <?= number_format($product[0]["preco"], 2, ",", "."); ?></h3></p>
 
-    <?php if ($product["promocao"] != 0): ?>
+    <?php if ($product[0]["promocao"] != 0): ?>
 
-        <p><h3 id="preco">R$ <?= number_format($product["promocao"], 2, ",", "."); ?></h3></p>
+        <p><h3 id="preco">R$ <?= number_format($product[0]["promocao"], 2, ",", "."); ?></h3></p>
 
     <?php endif; ?>
 
-    <p>Cor <br>
-        <a href="detalhesProduto.php?id=<?= $product["id"] ?>">
-            <div class="cor" style="background: #<?= CORES[$product["cor"]] ?>"></div>
-        </a>
+    <p>Cor</p>
+
+        <?php 
+            foreach ($product as $value):
+        ?>
+
+            <input id="<?= $value["cor"]; ?>" type="radio" name="color" value="<?= $value["id"]; ?>" <?= ($value["cor"] == $colorSelected) ? "checked" : "" ?>>
+
+            <label for="<?= $value["cor"]; ?>" class="cor"><?= $value["cor"]; ?></label>
+
+        <?php 
+            endforeach;
+        ?>
 
 
         <!-- <button type="button" class="cor" style="background: #<?php // echo $cor; ?>"></button> -->
-    </p>
+    
 
-    <?php if ($product["tamanho"] != "none"): ?>
+    <?php if ($product[0]["tamanho"] != "none"): ?>
         <p>Tamanho</p>
 
-        <?php if ($product["categoria"] == "Roupas"): ?>
+        <?php if ($product[0]["categoria"] == "Roupas"): ?>
             <p>
 
                 <label>
@@ -139,17 +144,25 @@ var_dump($product);
     <?php   endif;
 
         endif; ?>
-    <p>Quantidade <br> <input style="padding-left: 10px;" type="text" id="qnt" name="qnt" value="1" disabled></p>
+    <p>Quantidade <br> 
+        
+        <button class="alterarQuantidade" data-method="decremento">-</button>
+        
+        <input style="padding-left: 10px;" type="text" id="qnt" name="qnt" value="1" disabled>
 
-    <?php if ($product["tamanho"] != "none"): ?>
+        <button class="alterarQuantidade" data-method="incremento">+</button>
+    </p>
+
+
+    <?php if ($product[0]["tamanho"] != "none"): ?>
 
         <label id="msg">Por favor selecione o tamanho para adicionar ao carrinho</label><br>
 
     <?php endif; ?>
 
-    <button id="comprar" data-action="<?= $router->route("web.buy"); ?>" data-id="<?= $product["id"]; ?>">
+    <button id="comprar" data-action="<?= $router->route("web.buy"); ?>">
 
-        <img src="../media/images/icons/btnCarrinho.png">
+        <img src="<?= url("media/images/icons/btnCarrinho.png"); ?>">
         Adicionar ao Carrinho
 
     </button>
@@ -162,6 +175,11 @@ var_dump($product);
 <?php $v->start("scripts"); ?>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        var checkedValue = $("input[name='color']:checked").attr("id");
+
+
+        $(".fotosEmAngulosDiferentes[data-color="+ checkedValue + "]").click();
 
         //  caso o produto nao tenha tamanho para escolher o botao de compra ja fica desbloqueado
         if ($("#comprar").attr("class") == "none") {
@@ -192,6 +210,9 @@ var_dump($product);
 
     }
 
+    function getProductSelected() {
+        return $("input[name='color']:checked").val();
+    }
 
 
     $(".radioProduto").on("click", function(e){
@@ -201,6 +222,21 @@ var_dump($product);
         btnComprar.setAttribute("data-tamanho", tamanho);
     });
 
+    $(".alterarQuantidade").on("click", function(){
+
+        var quantidade = parseInt($("#qnt").val());
+        var tipo = $(this).attr("data-method");
+
+        if (tipo == "incremento")
+            quantidade += 1;
+        else
+            if (quantidade > 1)
+                quantidade -= 1;
+
+        $("#qnt").val(quantidade);
+        
+    });
+
 
     $("#comprar").on("click", function(e){
         e.preventDefault();
@@ -208,10 +244,18 @@ var_dump($product);
         var quantidade = document.querySelector("#qnt").value;
         var btnComprar = document.querySelector("#comprar");
         btnComprar.setAttribute("data-quantidade", quantidade);
+        var tamanho = $("input[name='tamanhoProduto']:checked").val();
+        var quantidade = $("#qnt").val();        
 
         var data = $(this).data();
 
-        $.post(data.action, data, function(){
+        $.post(data.action,{ 
+            "data": data,
+            "id": getProductSelected(),
+            "tamanho": tamanho,
+            "quantidade": quantidade
+            }, function(){
+                
             document.location.href = "<?= $router->route("web.cart"); ?>";
 
         }, "json").fail(function(){

@@ -66,9 +66,6 @@ $router->get("/{category}/pagina-{page}/{order}", "Web:ordemProducts");
 
 $router->get("/{category}/{subCategory}/pagina-{page}", "Web:products");
 
-// Alterar Ordem de Exibição dos Produtos
-$router->post("/{category}/{subCategory}/pagina-{page}/{order}", "Web:ordemProducts");
-$router->get("/{category}/{subCategory}/pagina-{page}/{order}", "Web:ordemProducts");
 // =================================================================================||
 
 $router->group("/Filtro");
@@ -79,10 +76,13 @@ $router->get("/pagina-{page}/{order}", "Web:ordemProducts");
 $router->post("/pagina-{page}/{order}", "Web:ordemProducts");
 
 $router->group("/Produto");
-$router->get("/{nameProduct}", "Web:detailProduct");
+$router->get("/{nameProduct}/{color}", "Web:detailProduct");
 
 $router->group("/Busca");
 $router->post("/pagina-{page}", "Web:products");
+
+$router->post("/pagina-{page}/{order}", "Web:ordemProducts");
+$router->get("/pagina-{page}/{order}", "Web:ordemProducts");
 
 /*
  * Tela de Erro

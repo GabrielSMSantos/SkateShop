@@ -19,11 +19,14 @@ $v->layout("_theme");
             </thead>
             <tbody>
             <?php for($i = 0; $i < count($_SESSION["carrinho"]); $i++): ?>
+            
 
                     <tr>
-                        <td><img class="imgProduto" src="<?php echo $products[$i]["imagem"]; ?>" align="left"/>
-                            <label class="nomeProduto"><b><?php echo $products[$i]["nomeProduto"]; ?></b>
-                                <br><?php echo $_SESSION["tamanho"][$products[$i]["id"]]; ?></label>
+                        <td><img class="imgProduto" src="<?= $products[$i]["imagem"]; ?>" align="left"/>
+                            <label class="nomeProduto"><b><?= $products[$i]["nomeProduto"]; ?></b>
+                                <br><?= $_SESSION["tamanho"][$products[$i]["id"]]; ?></label>
+
+
                         </td>
                         <td class="align">
                             <button class="alterarValor" data-action="<?= $router->route("web.alterarquantidadecarrinho"); ?>" data-method="deletar" data-id="<?= $products[$i]["id"]; ?>" style="background-color: transparent">
@@ -34,8 +37,8 @@ $v->layout("_theme");
 
                             <button class="alterarValor" data-action="<?= $router->route("web.alterarquantidadecarrinho"); ?>" data-method="decremento" data-id="<?= $products[$i]["id"]; ?>">-</button>
 
-                            <input id="<?php echo $id; ?>" class="qntProduto" type="text" name="qntProduto"
-                                   value="<?php echo $_SESSION["quantidade"][$products[$i]["id"]]; ?>" disabled>
+                            <input id="<?= $products[$i]["id"]; ?>" class="qntProduto" type="text" name="qntProduto"
+                                   value="<?= $_SESSION["quantidade"][$products[$i]["id"]]; ?>" disabled>
 
                             <button class="alterarValor" data-action="<?= $router->route("web.alterarquantidadecarrinho"); ?>" data-method="incremento" data-id="<?= $products[$i]["id"]; ?>">+</button>
 

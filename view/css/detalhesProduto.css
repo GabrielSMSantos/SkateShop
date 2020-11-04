@@ -68,11 +68,10 @@
             } 
 
             .cor{
-                width: 30px;
-                height: 30px;
+                padding: 5px 10px;
                 margin-left: 8px;
                 border: 3px solid #ccc;
-                border-radius: 50%;
+                background-color: #ddd;
                 cursor: pointer;
                 display: inline-block;
             }
@@ -80,8 +79,20 @@
                         outline: 0;
                     }
 
+                    input[name="color"] {
+                        display: none;
+                    }
+
+                    #infoCompra input[name="color"]:checked + label {
+                        border: 3px solid #205EE0;
+                        background-color: #205EE0;
+                        color: #fff;
+                    }
+
             #qnt{
                 width: 50px;
+                background-color: #fff;
+                border: 1px solid #ccc;
             }
 
             #msg{
@@ -130,6 +141,19 @@
                 background: #205EE0;
                 color: #fff;
             }
+
+        .alterarQuantidade {
+            padding: 0 5px;
+            cursor: pointer;
+            font-weight: bolder;
+            background: #ed1c24;
+            color: #fff;
+            border: 0;
+        }
+    
+        .alterarQuantidade:focus {
+            outline: none;
+        }
     
 
 }
@@ -225,6 +249,8 @@
 
     #qnt{
         width: 50px;
+        background-color: #fff;
+        border: 1px solid #ccc;
     }
 
 }
