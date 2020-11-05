@@ -61,14 +61,18 @@ class Web
             }
 
         } else if (isset($_SESSION["busca"])) {
-                $products = Produtos::FiltroProducts("Busca", "", "", "", "", $_SESSION["busca"], $page, $ordem);
-
-                $url = "Busca";
+                $products = Produtos::FiltroProducts("Busca", $_SESSION["dataFiltro"][0], $_SESSION["dataFiltro"][1], 
+                                                     $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], $_SESSION["busca"], $page, $ordem);
+                
+                if (strpos($_GET["route"], "Filtro") == 1)
+                    $url = "Filtro";
+                else
+                    $url = "Busca";    
 
         } else {
             if (isset($_SESSION["dataFiltro"][0]) || isset($_SESSION["dataFiltro"][1]) || isset($_SESSION["dataFiltro"][2]) || isset($_SESSION["dataFiltro"][3])) {
                 $products = Produtos::FiltroProducts($_SESSION["category"], $_SESSION["dataFiltro"][0], $_SESSION["dataFiltro"][1], 
-                                                   $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], " ", $page, $ordem);
+                                                     $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], " ", $page, $ordem);
 
                 $url = "Filtro";
             }

@@ -148,7 +148,7 @@ $v->layout("_theme");
     </div>
 
     <div class="opcoesCompra">
-        <button id="continuar"><a href="produtos.php">Continuar Comprando</a></button>
+        <button id="continuar"><a href="<?= url("Roupas/pagina-1"); ?>">Continuar Comprando</a></button>
         <button id="finalizar"><a href="#">Finalizar Compra</a></button>
     </div>
 

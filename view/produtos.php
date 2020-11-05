@@ -187,7 +187,7 @@ $v->layout("_theme");
                 </button>
 
             <?php else: ?>
-                    <a href="<?= url("Produto/".str_replace(" ", "-", $product["nomeProduto"])); ?>" class="btn btn-outline-success botoes">Detalhes</a>
+                    <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])."/".$product["cor"]); ?>" class="btn btn-outline-success botoes">Detalhes</a>
             <?php endif; ?>
 
         </div>
@@ -318,13 +318,12 @@ $v->layout("_theme");
             if (sliceUrl().search(/pagina-[0-9]/) > -1) {
 
                 if (url.slice(url.lastIndexOf("/") + 1).search(/pagina-[0-9]/) > -1) {
-                    url = url + "/" + dropDown;
+                    url = url.replace(/pagina-[0-9]/, "pagina-1") + "/" + dropDown;
 
                 } else {
                     var ordem = url.slice(url.lastIndexOf("/"));
                     url = url.substring(0, url.length - ordem.length) + "/" + dropDown;
                     url = url.replace(/pagina-[0-9]/, "pagina-1");
-
                 }
                 
             } else {

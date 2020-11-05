@@ -72,6 +72,7 @@ $router->group("/Filtro");
 $router->post("/", "Web:filtroProducts", "web.filtroProducts");
 $router->get("/pagina-{page}", "Web:filtroProducts");
 
+
 $router->get("/pagina-{page}/{order}", "Web:ordemProducts");
 $router->post("/pagina-{page}/{order}", "Web:ordemProducts");
 
