@@ -104,12 +104,6 @@
         /* max-height: 247px; */
     }
 
-    
-    .descricao{
-        /* width: 90%;270px */
-        /* margin: 15px 0;  */
-    }
-
         .descricao h6{
             font-weight: 100;
         }
@@ -157,7 +151,6 @@
 
             .tamanho{
                 padding: 3px 10px;
-                background: #fff;
                 display: inline-block;
                 margin: 5px;
                 border:1px solid #ccc;
@@ -175,11 +168,16 @@
                 cursor: pointer;
             }
 
-            input[name="chkTamanho"] {
+            .chkTamanho {
                 display: none;
             }
 
-            input[name="chkCor"] {
+            .chkTamanho:checked ~ .tamanho{
+                background: #205EE0;
+                color: #fff;
+            }
+
+            input[name="Cor"] {
                 display: none;
             }
 

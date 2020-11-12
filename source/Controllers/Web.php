@@ -94,13 +94,13 @@ class Web
         $page = empty($data["page"]) ? 1 : str_replace("-", "", filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));
         
         if ($_POST) {
-            $marca = empty($data["chkMarca"]) ? "" : $data["chkMarca"];
-            $tamanho = empty($data["chkTamanho"]) ? "" : $data["chkTamanho"];
-            $cor = empty($data["chkCor"]) ? "" : $data["chkCor"];
-            $genero = empty($data["chkGenero"]) ? "" : $data["chkGenero"];
+            $marca = empty($data["Marca"]) ? "" : $data["Marca"];
+            $tamanho = empty($data["Tamanho"]) ? "" : $data["Tamanho"];
+            $cor = empty($data["Cor"]) ? "" : $data["Cor"];
+            $genero = empty($data["Genero"]) ? "" : $data["Genero"];
             $_SESSION["dataFiltro"] = array($marca, $tamanho, $cor, $genero);
         }
-            
+
         if (isset($_SESSION["busca"])) {
             $result = Produtos::FiltroProducts("Busca", $_SESSION["dataFiltro"][0], $_SESSION["dataFiltro"][1], 
                                                $_SESSION["dataFiltro"][2], $_SESSION["dataFiltro"][3], $_SESSION["busca"], $page, "Lancamentos");
@@ -124,6 +124,8 @@ class Web
 
     public function products(array $data): void
     {
+        unset($_SESSION["dataFiltro"]);
+        
         $category = empty($data["category"]) ? "" : $data["category"];
         $subCategory = empty($data["subCategory"]) ? "" : $data["subCategory"];
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));

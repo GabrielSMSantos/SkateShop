@@ -11,19 +11,20 @@ $v->layout("_theme");
         <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
 
             <div class="filtro">
-                <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
+                <!-- <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;"> -->
 
                     <p class="titulo">Marca</p>
                     <ul class="listaMarcasCategorias">
                         <?php
                             foreach (MARCAS as $indice => $marca):
                                 
-                                echo "<label for='marca{$indice}'><li>$marca</li></label>
+                                echo "<label for='marca{$indice}'><li>$marca</li></label>"; ?>
                                 
-                                      <input type='radio' name='chkMarca' id='marca{$indice}' value='$marca'>
+                                      <input type="radio" name="Marca" id="marca<?= $indice ?>" value="<?= $marca ?>" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                                                    $_SESSION["dataFiltro"][0] == $marca) ? "checked" : ""; ?>>
                                       
-                                      <br>";
-
+                                      <br>
+                        <?php
                             endforeach;
                         ?>
                     </ul>
@@ -32,17 +33,30 @@ $v->layout("_theme");
                     <p class="titulo">Tamanho</p>
 
                     <ul class="listaMarcasCategorias">
-                        <label for="tamanhoP"><li class="tamanho">P</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoP" value="p">
+                        <label>
+                        <input type="radio" name="Tamanho" id="tamanhoP" class="chkTamanho" value="p" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                        $_SESSION["dataFiltro"][1] == "p") ? "checked" : ""; ?>>
+                                <p class="tamanho">P</p>
+                        </label>
 
-                        <label for="tamanhoM"><li class="tamanho">M</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoM" value="m">
+                        <label>
+                        <input type="radio" name="Tamanho" id="tamanhoM" class="chkTamanho" value="m" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                        $_SESSION["dataFiltro"][1] == "m") ? "checked" : ""; ?>>
+                                <p class="tamanho">M</p>
+                        </label>
 
-                        <label for="tamanhoG"><li class="tamanho">G</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoG" value="g">
+                        <label>
+                        <input type="radio" name="Tamanho" id="tamanhoG" class="chkTamanho" value="g" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                        $_SESSION["dataFiltro"][1] == "g") ? "checked" : ""; ?>>
+                                <p class="tamanho">G</p>
+                        </label>
 
-                        <label for="tamanhoGG"><li class="tamanho">GG</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoGG" value="gg">
+                        <label>
+                        <input type="radio" name="Tamanho" id="tamanhoGG" class="chkTamanho" value="gg" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                          $_SESSION["dataFiltro"][1] == "gg") ? "checked" : ""; ?>>
+                                <p class="tamanho">GG</p>
+                        </label>
+
                     </ul>
                 <br>
 
@@ -52,11 +66,13 @@ $v->layout("_theme");
                     <?php 
                         foreach(CORES as $indice => $value):
 
-                            echo "<label for='cor{$indice}'><li class='cor' style='background-color: #{$value}' alt='$indice'></li></label>
+                            echo "<label for='cor{$indice}'><li class='cor' style='background-color: #{$value}' alt='$indice'></li></label>"; ?>
                             
-                            <input type='radio' name='chkCor' id='cor{$indice}' value='$indice'>
-                            ";
+                            <input type="radio" name="Cor" id="cor<?= $indice ?>" value="<?= $indice ?>" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                                            $_SESSION["dataFiltro"][2] == $indice) ?
+                                                                                                            "checked" : ""; ?>>
 
+                    <?php
                         endforeach;
                     ?>
                     </ul>
@@ -66,15 +82,21 @@ $v->layout("_theme");
 
                     <ul class="listaMarcasCategorias">    
                         <label for="GeneroMasc"><li>Masculino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroMasc" value="Masculino">
+                        <input type="radio" name="Genero" id="GeneroMasc" value="Masculino" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                                $_SESSION["dataFiltro"][3] == "Masculino") ?
+                                                                                                "checked" : ""; ?>>
                         <br>
 
                         <label for="GeneroFemi"><li>Feminino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroFemi" value="Feminino">
+                        <input type="radio" name="chkGenero" id="GeneroFemi" value="Feminino" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                                $_SESSION["dataFiltro"][3] == "Feminino") ?
+                                                                                                "checked" : ""; ?>>
                         <br>
 
                         <label for="GeneroUni"><li>Unissex</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroUni" value="Unissex">
+                        <input type="radio" name="chkGenero" id="GeneroUni" value="Unissex" <?= (isset($_SESSION["dataFiltro"]) && 
+                                                                                                $_SESSION["dataFiltro"][3] == "Unissex") ?
+                                                                                                "checked" : ""; ?>>
 
                     </ul>
                     <br>
@@ -89,44 +111,46 @@ $v->layout("_theme");
 
         </form>
         
-<form id="filtrosMobile">
+<form id="filtrosMobile" method="post" action="<?= $router->route("web.filtroProducts") ?>">
     
-        <select class="filtroMobile">
-            <option selected>MARCA</option>
+        <select name="Marca" class="filtroMobile">
+            <option value="" <?= empty($_SESSION["dataFiltro"][0]) ? "selected" : "" ?>>MARCA</option>
             <?php
-                foreach (MARCAS as $indice => $marca):
+                foreach (MARCAS as $indice => $marca): ?>
                     
-                    echo "<option value='$marca'>$marca</option>";
+                    <option value="<?= $marca ?>" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][0] == $marca) ? "selected" : ""; ?>><?= $marca ?></option>
 
+            <?php
                 endforeach;
             ?>
         </select>
 
 
-        <select class="filtroMobile">
-            <option selected>TAMANHO</option>
-            <option value="p">P</option>
-            <option value="m">M</option>
-            <option value="g">G</option>
-            <option value="gg">GG</option>
+        <select name="Tamanho" class="filtroMobile">
+            <option value="" <?= empty($_SESSION["dataFiltro"][1]) ? "selected" : "" ?>>TAMANHO</option>
+            <option value="p" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "p") ? "selected" : ""; ?>>P</option>
+            <option value="m" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "m") ? "selected" : ""; ?>>M</option>
+            <option value="g" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "g") ? "selected" : ""; ?>>G</option>
+            <option value="gg" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "gg") ? "selected" : ""; ?>>GG</option>
         </select>
 
-        <select class="filtroMobile">
-            <option selected>COR</option>
+        <select name="Cor" class="filtroMobile">
+            <option value="" <?= empty($_SESSION["dataFiltro"]) ? "selected" : "" ?>>COR</option>
             <?php
-                foreach (CORES as $indice => $marca):
+                foreach (CORES as $indice => $cor): ?>
                     
-                    echo "<option value='$indice'>$indice</option>";
+                    <option value="<?= $indice ?>" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][2] == $indice) ? "selected" : ""; ?>><?= $indice ?></option>
 
+            <?php
                 endforeach;
             ?>
         </select>
 
-        <select class="filtroMobile">
-            <option selected>GÊNERO</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="unissex">Unissex</option>
+        <select name="Genero" class="filtroMobile">
+            <option value="" <?= empty($_SESSION["dataFiltro"][3]) ? "selected" : "" ?>>GÊNERO</option>
+            <option value="masculino" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "masculino") ? "selected" : ""; ?>>Masculino</option>
+            <option value="feminino" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "feminino") ? "selected" : ""; ?>>Feminino</option>
+            <option value="unissex" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "unissex") ? "selected" : ""; ?>>Unissex</option>
         </select>
 
         <button type="submit" class="btn btn-success">

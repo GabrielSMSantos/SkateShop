@@ -37,7 +37,14 @@
                             <p>Meu Carrinho <br>
                                 <?php
                                 if(isset($_SESSION["carrinho"])){
-                                    echo count($_SESSION["carrinho"]);
+                                    $qntCarrinho = 0;
+                                    
+                                    foreach ($_SESSION["quantidade"] as $qnt) {
+                                        $qntCarrinho += $qnt;
+                                    }
+
+                                    echo $qntCarrinho;
+
                                 }else{
                                     echo "0";
                                 }
