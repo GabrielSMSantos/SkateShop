@@ -1,5 +1,5 @@
 <?php
-$v->layout("_theme");
+$v->layout("_theme2");
 
       $v->start("cssThisPage"); ?>
             <link rel="stylesheet" href="<?= url("view/css/style.css"); ?>">
@@ -156,4 +156,4 @@ $v->layout("_theme");
 <?php $v->end(); ?>
 
 </body>
-</html>
+

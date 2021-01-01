@@ -1,5 +1,5 @@
 <?php
-$v->layout("_theme");
+$v->layout("_theme2");
 
       $v->start("cssThisPage");
 ?>      <link rel="stylesheet" href="<?= url("view/css/produtos.css"); ?>">
@@ -7,8 +7,9 @@ $v->layout("_theme");
 
     if(count($products) > 0):
 ?>
+        <h1 style="font-style: italic;">ROUPAS MASCULINAS</h1>
 
-        <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
+        <!-- <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
 
             <div class="filtro">
                 <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
@@ -87,66 +88,67 @@ $v->layout("_theme");
             </div>
 
 
-        </form>
+        </form> -->
+<div id="filtrosMobile">   
+    <form>
         
-<form id="filtrosMobile">
-    
-        <select class="filtroMobile">
-            <option selected>MARCA</option>
-            <?php
-                foreach (MARCAS as $indice => $marca):
-                    
-                    echo "<option value='$marca'>$marca</option>";
+            <select class="filtroMobile">
+                <option selected>MARCA</option>
+                <?php
+                    foreach (MARCAS as $indice => $marca):
+                        
+                        echo "<option value='$marca'>$marca</option>";
 
-                endforeach;
-            ?>
+                    endforeach;
+                ?>
+            </select>
+
+
+            <select class="filtroMobile">
+                <option selected>TAMANHO</option>
+                <option value="p">P</option>
+                <option value="m">M</option>
+                <option value="g">G</option>
+                <option value="gg">GG</option>
+            </select>
+
+            <select class="filtroMobile">
+                <option selected>COR</option>
+                <?php
+                    foreach (CORES as $indice => $marca):
+                        
+                        echo "<option value='$indice'>$indice</option>";
+
+                    endforeach;
+                ?>
+            </select>
+
+            <select class="filtroMobile">
+                <option selected>GÊNERO</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="unissex">Unissex</option>
+            </select>
+
+            <button type="submit" class="btn btn-success">
+                <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
+                FILTRAR
+            </button>   
+    </form>
+
+
+    <form id="ordemProdutos" method="post" action="<?= url($url); ?>">
+        <p>Ordem: </p>
+        <select name="ordem" id="dropdownOrdemProdutos">
+            <option value="Lancamentos">Lançamentos</option>
+            <option value="menorPreco">Menor Preço</option>
+            <option value="maiorPreco">Maior Preço</option>
+            <option value="alfabetica">Alfabética</option>
+            <option value="relevancia">Relevância</option>
         </select>
-
-
-        <select class="filtroMobile">
-            <option selected>TAMANHO</option>
-            <option value="p">P</option>
-            <option value="m">M</option>
-            <option value="g">G</option>
-            <option value="gg">GG</option>
-        </select>
-
-        <select class="filtroMobile">
-            <option selected>COR</option>
-            <?php
-                foreach (CORES as $indice => $marca):
-                    
-                    echo "<option value='$indice'>$indice</option>";
-
-                endforeach;
-            ?>
-        </select>
-
-        <select class="filtroMobile">
-            <option selected>GÊNERO</option>
-            <option value="masculino">Masculino</option>
-            <option value="feminino">Feminino</option>
-            <option value="unissex">Unissex</option>
-        </select>
-
-        <button type="submit" class="btn btn-success">
-            <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
-            Filtrar
-        </button>   
-</form>
-
-
-<form id="ordemProdutos" method="post" action="<?= url($url); ?>">
-    <p>Ordem: </p>
-    <select name="ordem" id="dropdownOrdemProdutos">
-        <option value="Lancamentos">Lançamentos</option>
-        <option value="menorPreco">Menor Preço</option>
-        <option value="maiorPreco">Maior Preço</option>
-        <option value="alfabetica">Alfabética</option>
-        <option value="relevancia">Relevância</option>
-    </select>
-    <input id="btnOrdem" type="submit">
-</form>
+        <input id="btnOrdem" type="submit">
+    </form>
+</div>
 <?php endif; ?>
 
 
@@ -168,10 +170,15 @@ $v->layout("_theme");
             </div>
 
             <div class="descricao">
-                <h6 style="color: #404040;"><?= $product["nomeProduto"]; ?></h6>
-                <b class=" <?php if ($product["promocao"] != 0.00):
-                                    echo "preco";
-                                 endif; ?>">
+                <h6 style="text-transform: uppercase; font-size: 17px;">
+                    <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])."/".$product["cor"]); ?>">
+                        <?= $product["nomeProduto"]; ?>
+                    </a>
+                </h6>
+
+                
+                <b class="<?= ($product["promocao"] != 0.00) ? "precoAntigo" : "preco"  ?>"> 
+
                 R$ <?= number_format($product["preco"], 2, ",", "."); ?></b>
                 <?php if ($product["promocao"] != 0.00): ?>
                     <b class="promocao">R$ <?= number_format($product["promocao"], 2, ",", "."); ?></b>
@@ -187,7 +194,7 @@ $v->layout("_theme");
                 </button>
 
             <?php else: ?>
-                    <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])."/".$product["cor"]); ?>" class="btn btn-outline-success botoes">Detalhes</a>
+                    <!-- <a href="<?= url("Produto/".str_replace(" ", "-",$product["nomeProduto"])."/".$product["cor"]); ?>" class="btn btn-outline-success botoes">DETALHES</a> -->
             <?php endif; ?>
 
         </div>
@@ -231,10 +238,10 @@ $v->layout("_theme");
 
         <?php
             if (($i + 1) == $page):
-                echo '<li class="page-item active"><a class="page-link" href="'.(url("{$url}/pagina-".($i + 1))).'">' . ($i + 1) . '</a></li>';
+                echo '<li><a class="linkPage activePage" href="'.(url("{$url}/pagina-".($i + 1))).'">' . ($i + 1) . '</a></li>';
 
             else:
-                echo '<li class="page-item"><a class="page-link" href="'.(url("{$url}/pagina-".($i + 1))).'">' . ($i + 1) . '</a></li>';
+                echo '<li><a class="linkPage" href="'.(url("{$url}/pagina-".($i + 1))).'">' . ($i + 1) . '</a></li>';
             endif;
 
         endfor;
@@ -242,15 +249,16 @@ $v->layout("_theme");
 
         <?php
         if ($page == $totalPage): ?>
-            <li class="page-item disabled">
 
-            <?php else: ?>
-                <li class="page-item ">
+            <li class="disabledPage">
 
-            <?php endif;
-                    echo '<a class="page-link" href="'.(url("{$url}/pagina-".($i))).'">Próximo</a>';
-            ?>
-                </li>
+        <?php else: ?>
+
+            <li>
+
+        <?php endif;
+            echo '<a class="linkPage" href="'.(url("{$url}/pagina-".($i))).'">Próximo</a>';
+        ?>
             </li>
     </ul>
 

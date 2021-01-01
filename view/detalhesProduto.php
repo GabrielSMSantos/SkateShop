@@ -1,5 +1,5 @@
 <?php
-$v->layout("_theme");
+$v->layout("_theme2");
 
       $v->start("cssThisPage");
 ?>      <link rel="stylesheet" href="<?= url("view/css/detalhesProduto.css"); ?>">
@@ -29,16 +29,17 @@ $v->layout("_theme");
 </div>
 
 <div id="infoCompra">
-                <h2><?= $product[0]["subCategoria"]." ".$product[0]["marca"]." ".$product[0]["modelo"]; ?></h2>
-                <br>
+            <h1><?= $product[0]["subCategoria"]." ".$product[0]["marca"]." ".$product[0]["modelo"]; ?></h1>
+            <br>
 
 
-                <p>Preço  <h3 id="<?php if($product[0]["promocao"] != 0){ echo "precoVelho"; }else{ echo "preco";} ?>">
-    R$ <?= number_format($product[0]["preco"], 2, ",", "."); ?></h3></p>
+            <p id="<?php if($product[0]["promocao"] != 0){ echo "precoVelho"; }else{ echo "preco";} ?>">
+                R$ <?= number_format($product[0]["preco"], 2, ",", "."); ?>
+            </p>
 
     <?php if ($product[0]["promocao"] != 0): ?>
 
-        <p><h3 id="preco">R$ <?= number_format($product[0]["promocao"], 2, ",", "."); ?></h3></p>
+        <h3 id="precoPromocao">R$ <?= number_format($product[0]["promocao"], 2, ",", "."); ?></h3>
 
     <?php endif; ?>
 
@@ -61,7 +62,7 @@ $v->layout("_theme");
     
 
     <?php if ($product[0]["tamanho"] != "none"): ?>
-        <p>Tamanho</p>
+        <p style="margin-top: 15px;">Tamanho</p>
 
         <?php if ($product[0]["categoria"] == "Roupas"): ?>
             <p>

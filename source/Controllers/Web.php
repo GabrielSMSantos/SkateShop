@@ -37,6 +37,14 @@ class Web
         ]);
     }
 
+
+    public function novoTema(): void
+    {
+        echo $this->view->render("home", [
+            "title" => "Novo Tema"
+        ]);
+    }
+
     public function ordemProducts(array $data): void
     {
         $page = empty($data["page"]) ? 1 : str_replace("-", "",filter_var($data["page"], FILTER_SANITIZE_NUMBER_INT));

@@ -1,0 +1,218 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "BenchNine";
+    letter-spacing: 1px;
+}
+
+@font-face {
+    font-family: "BenchNine";
+    src: url("../../media/font/BenchNine-Bold.ttf");
+}
+
+body {
+    margin: 0;
+}
+
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+::-webkit-scrollbar-thumb{
+    background: #706F6F;
+    border-radius: 3px;
+}
+
+
+@media (min-width: 1025px) {
+
+    header #topo {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 80px;
+        background-color: #fff;
+        border-width: 150px;
+        border-bottom: 1px solid #e3e3e3;
+    }
+
+        header #topo a {
+            align-self: center;
+        }
+
+        header #topo #busca_carrinho_usuario {
+            position: absolute;
+            right: 75px;
+            top: 22.5px;
+            width: 250px;
+            height: 35px;
+        }
+
+            #busca_carrinho_usuario input {
+                position: relative;
+                height: 100%;
+                border: 0;
+                outline: 0;
+                padding: 5px 25px 5px 20px;
+                border: 1px solid #e0e0e0;
+                background-color: #f5f5f5;
+                font-size: 13px;
+            }
+
+                #busca_carrinho_usuario #iconPesquisa {
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+
+            #busca_carrinho_usuario .icons {
+                margin-left: 10px;
+                text-decoration: none;
+            }
+
+            #quantidade {
+                position: absolute;
+                top: -10px;
+                left: 20px;
+                height: 23px;
+                padding: 0 4px;
+                border-radius: 50%;
+                background-color: #80ed99;
+            }
+
+    header nav {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        font-size: 22px;
+        background-color: #fff;
+        /* border-bottom: 1px solid #e0e0e0; */
+        box-shadow: 0 20px 35px -20px rgba(0, 0, 0, 0.3);
+        /* z-index: 99; */
+    }
+        /* nav a:hover {
+            color: #000;
+        } */
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .navPags {
+            display: flex;
+            align-items: center;
+            padding: 8px 20px;
+            height: 100%;
+            text-transform: uppercase;
+            font-size: 16px;
+            text-align: center;
+            /* background-color: #f00; */
+        }
+
+            .navPags a {
+                color: #777;
+            }
+
+        header nav .subNav {
+            /* display: none; */
+            visibility: hidden;
+            opacity: 0.5;
+            position: absolute;
+            left: 0;
+            top: 50px;
+            min-height: 350px;
+            width: 100%;
+            z-index: 99;
+            background-color: #fff;
+            padding-top: 15px;
+            padding-left: 0;
+            transition: opacity 350ms ease-in-out;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav ul li:hover .subNav{
+            display: block;
+            visibility: visible;
+            opacity: 1;
+        }
+
+        header nav ul li .subNav li {
+            display: block;
+            float: left;
+        }
+
+            .itensNav {
+                text-align: center;
+                width: 450px;
+            }
+
+               
+
+            .opcoes {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                flex-wrap: wrap;
+                border-left: 1px solid #ccc;
+            }
+                .opcoes a {
+                    color: #777;
+                }
+            
+                .opcMarca {
+                    max-height: 250px;
+                }
+
+
+    footer {
+        float: left;
+        text-align: center;
+        width: 100%;
+        min-height: 500px;
+        color: #fff;
+        background-color: #595959;
+    }
+
+        footer #logoRodape {
+            margin: 55px 0 20px 0;
+        }
+
+        footer #sobre {
+            text-align: justify;
+            column-count: 2;
+            font-size: 25px;
+            padding: 0 100px;
+        }
+
+        footer #medias {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 10px 100px;
+            font-size: 20px;
+        }
+
+        footer .iconsFooter {
+            height: 35px;
+        }
+
+        footer #copy {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            height: 50px;
+            background-color: #737373;
+        }
+    
+}

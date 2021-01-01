@@ -16,6 +16,7 @@ $router->namespace("Source\Controllers");
 $router->group(null);
 $router->get("/", "Web:home", "web.home");
 
+
 /*
  * Carrinho
  */
@@ -84,6 +85,7 @@ $router->post("/pagina-{page}", "Web:products");
 
 $router->post("/pagina-{page}/{order}", "Web:ordemProducts");
 $router->get("/pagina-{page}/{order}", "Web:ordemProducts");
+
 
 /*
  * Tela de Erro
