@@ -85,9 +85,7 @@
         padding: 15px 0;
         text-align: center;
     }
-        .descricao a:hover{
-            color: #000;
-        }
+
         
         .precoAntigo{
             text-decoration: line-through;
@@ -162,7 +160,6 @@
 
             .tamanho{
                 padding: 3px 10px;
-                background: #fff;
                 display: inline-block;
                 margin: 5px;
                 border:1px solid #ccc;
@@ -180,11 +177,16 @@
                 cursor: pointer;
             }
 
-            input[name="chkTamanho"] {
+            .chkTamanho {
                 display: none;
             }
 
-            input[name="chkCor"] {
+            .chkTamanho:checked ~ .tamanho{
+                background: #205EE0;
+                color: #fff;
+            }
+
+            input[name="Cor"] {
                 display: none;
             }
 

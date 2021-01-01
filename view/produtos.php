@@ -9,130 +9,53 @@ $v->layout("_theme2");
 ?>
         <h1 style="font-style: italic;">ROUPAS MASCULINAS</h1>
 
-        <!-- <form id="filtros" method="post" action="<?= $router->route("web.filtroProducts") ?>">
-
-            <div class="filtro">
-                <input type="checkbox" id="chkFiltro" name="chkFiltro" style="display: none;">
-
-                    <p class="titulo">Marca</p>
-                    <ul class="listaMarcasCategorias">
-                        <?php
-                            foreach (MARCAS as $indice => $marca):
-                                
-                                echo "<label for='marca{$indice}'><li>$marca</li></label>
-                                
-                                      <input type='radio' name='chkMarca' id='marca{$indice}' value='$marca'>
-                                      
-                                      <br>";
-
-                            endforeach;
-                        ?>
-                    </ul>
-                <br>
-
-                    <p class="titulo">Tamanho</p>
-
-                    <ul class="listaMarcasCategorias">
-                        <label for="tamanhoP"><li class="tamanho">P</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoP" value="p">
-
-                        <label for="tamanhoM"><li class="tamanho">M</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoM" value="m">
-
-                        <label for="tamanhoG"><li class="tamanho">G</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoG" value="g">
-
-                        <label for="tamanhoGG"><li class="tamanho">GG</li></label>
-                        <input type="radio" name="chkTamanho" id="tamanhoGG" value="gg">
-                    </ul>
-                <br>
-
-                    <p class="titulo">Cor</p>
-
-                    <ul class="listaMarcasCategorias">
-                    <?php 
-                        foreach(CORES as $indice => $value):
-
-                            echo "<label for='cor{$indice}'><li class='cor' style='background-color: #{$value}' alt='$indice'></li></label>
-                            
-                            <input type='radio' name='chkCor' id='cor{$indice}' value='$indice'>
-                            ";
-
-                        endforeach;
-                    ?>
-                    </ul>
-                <br>
-
-                    <p class="titulo">Gênero</p>
-
-                    <ul class="listaMarcasCategorias">    
-                        <label for="GeneroMasc"><li>Masculino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroMasc" value="Masculino">
-                        <br>
-
-                        <label for="GeneroFemi"><li>Feminino</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroFemi" value="Feminino">
-                        <br>
-
-                        <label for="GeneroUni"><li>Unissex</li></label>
-                        <input type="radio" name="chkGenero" id="GeneroUni" value="Unissex">
-
-                    </ul>
-                    <br>
-
-                    <button id="btnFiltrar" type="submit">
-                        <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
-                        Filtrar 
-                    </button>
-
-            </div>
-
-
-        </form> -->
-<div id="filtrosMobile">   
-    <form>
         
-            <select class="filtroMobile">
-                <option selected>MARCA</option>
+<div id="filtrosMobile">   
+    <form method="post" action="<?= $router->route("web.filtroProducts") ?>">
+        
+            <select name="Marca" class="filtroMobile">
+                <option value="" <?= empty($_SESSION["dataFiltro"][0]) ? "selected" : "" ?>>MARCA</option>
                 <?php
-                    foreach (MARCAS as $indice => $marca):
+                    foreach (MARCAS as $indice => $marca): ?>
                         
-                        echo "<option value='$marca'>$marca</option>";
+                        <option value="<?= $marca ?>" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][0] == $marca) ? "selected" : ""; ?>><?= $marca ?></option>
 
+                <?php
                     endforeach;
                 ?>
             </select>
 
 
-            <select class="filtroMobile">
-                <option selected>TAMANHO</option>
-                <option value="p">P</option>
-                <option value="m">M</option>
-                <option value="g">G</option>
-                <option value="gg">GG</option>
+            <select name="Tamanho" class="filtroMobile">
+                <option value="" <?= empty($_SESSION["dataFiltro"][1]) ? "selected" : "" ?>>TAMANHO</option>
+                <option value="p" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "p") ? "selected" : ""; ?>>P</option>
+                <option value="m" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "m") ? "selected" : ""; ?>>M</option>
+                <option value="g" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "g") ? "selected" : ""; ?>>G</option>
+                <option value="gg" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][1] == "gg") ? "selected" : ""; ?>>GG</option>
             </select>
 
-            <select class="filtroMobile">
-                <option selected>COR</option>
+            <select name="Cor" class="filtroMobile">
+                <option value="" <?= empty($_SESSION["dataFiltro"]) ? "selected" : "" ?>>COR</option>
                 <?php
-                    foreach (CORES as $indice => $marca):
+                    foreach (CORES as $indice => $cor): ?>
                         
-                        echo "<option value='$indice'>$indice</option>";
+                        <option value="<?= $indice ?>" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][2] == $indice) ? "selected" : ""; ?>><?= $indice ?></option>
 
+                <?php
                     endforeach;
                 ?>
             </select>
 
-            <select class="filtroMobile">
-                <option selected>GÊNERO</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="unissex">Unissex</option>
+            <select name="Genero" class="filtroMobile">
+                <option value="" <?= empty($_SESSION["dataFiltro"][3]) ? "selected" : "" ?>>GÊNERO</option>
+                <option value="masculino" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "masculino") ? "selected" : ""; ?>>Masculino</option>
+                <option value="feminino" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "feminino") ? "selected" : ""; ?>>Feminino</option>
+                <option value="unissex" <?= (isset($_SESSION["dataFiltro"]) && $_SESSION["dataFiltro"][3] == "unissex") ? "selected" : ""; ?>>Unissex</option>
             </select>
 
             <button type="submit" class="btn btn-success">
                 <img src="<?= url("media/images/icons/filtrar.png"); ?>" alt="Filtrar Produtos">
-                FILTRAR
+                Filtrar
             </button>   
     </form>
 
