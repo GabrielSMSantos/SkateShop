@@ -139,10 +139,12 @@
         }
 
         .tamanhoProduto{
+            display: flex;
             cursor: pointer;
             padding: 5px 25px;
             border: 1px solid #ccc;
             font-size: 16px;
+            margin: 0 5px 5px 0;
         }
             .tamanhoProduto:hover {
                 background-color: #205EE0;

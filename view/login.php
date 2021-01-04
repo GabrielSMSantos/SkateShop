@@ -1,5 +1,5 @@
 <?php
-$v->layout("_theme");
+$v->layout("_theme2");
 
       $v->start("cssThisPage");
 ?>      <link rel="stylesheet" href="<?= url("view/css/login.css"); ?>">
@@ -94,7 +94,7 @@ $v->layout("_theme");
             alerta.setAttribute("role", "alert");
 
             var p = document.createElement("b");
-            var message = document.createTextNode("Erro ao logar!");
+            var message = document.createTextNode("Erro ao Logar!");
             p.appendChild(message);
 
             alerta.appendChild(p);

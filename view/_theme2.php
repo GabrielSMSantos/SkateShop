@@ -41,7 +41,30 @@
                                 ?>
                             </b>
                     </a>
-                    <a href="#" class="icons"><img src="<?= url("media/images/icons/user.png"); ?>" alt="Interações de Usuário"></a>
+                    <div id="usuario">
+                        <img src="<?= url("media/images/icons/user.png"); ?>" alt="Interações de Usuário">
+
+                        <div id="menuDropUsuario">
+                            
+                            <?php if(!isset($_SESSION["logado"])): ?>
+
+                                <ul>
+                                    <a href="<?= $router->route("web.loginscreen"); ?>"><li class="itemMenuDrop">Login</li></a>
+                                    <a href="<?= $router->route("web.register"); ?>"><li class="itemMenuDrop">Cadastrar-se</li></a>
+                                </ul>
+
+                            <?php else: ?>
+
+                                <p class="itemMenuDrop" style="border-bottom:1px solid #eee">Olá, <?= $_SESSION["nomeUsuario"] ?></p>
+
+                                <ul>
+                                    <a href="<?= $router->route("web.myaccount"); ?>"><li class="itemMenuDrop">Minha Conta</li></a>
+                                    <a href="#" class="logout" data-action="<?= $router->route("usuario.logout"); ?>"><li class="itemMenuDrop">Sair</li></a>
+                                </ul>
+
+                            <?php endif; ?>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -211,4 +234,24 @@
 
     <script type="text/javascript" src="<?= url("jq/jquery-3.3.1.min.js"); ?>"></script>
     <script type="text/javascript" src="<?= url("bootstrap/bootstrap.js"); ?>"></script>
+    <script type="text/javascript">
+        $(".logout").on("click", function(e) {
+            e.preventDefault();
+
+            var data = $(this).data();
+
+
+            console.log(data.action);
+
+            $.post(data.action, function(){
+                document.location.reload(true);
+
+            }, "json").fail(function(){
+                alert("Erro ao deslogar.");
+            });
+        });
+
+    </script>
+    
+    <?= $v->section("scripts"); ?>
 </html>

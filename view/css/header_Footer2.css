@@ -48,11 +48,13 @@ body {
         }
 
         header #topo #busca_carrinho_usuario {
+            display: flex;
             position: absolute;
             right: 75px;
             top: 22.5px;
             width: 250px;
-            height: 35px;
+            height: 55px;
+            padding-bottom: 20px;
         }
 
             #busca_carrinho_usuario input {
@@ -72,17 +74,77 @@ body {
                     top: 0;
                 }
 
+            #usuario {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                margin-left: 5px;
+            }
+                #usuario img {
+                    height: 100%;
+                }
+
+                
+
+                #menuDropUsuario {
+                    visibility: hidden;
+                    opacity: 0.5;
+                    transition: visibility 250ms ease-in-out, opacity 250ms ease-in-out;
+                    position: absolute;
+                    top: 45px;
+                    right: 0;
+                    width: 200px;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    background-color: #fff;
+                    z-index: 99;
+                    box-shadow: 10px 20px 25px rgba(0, 0, 0, .15);
+                }
+                    #menuDropUsuario li {
+                        color: #777;
+                    }
+                    
+                    #usuario:hover #menuDropUsuario {
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                
+                    .itemMenuDrop {
+                        list-style: none;
+                        padding: 10px 18px;
+                        text-transform: uppercase;
+                    }
+
+                    #menuDropUsuario::after {
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        top: 0%;
+                        right: 12px;
+                        content: '';
+                        transform: translate(0%, -100%);
+                        border-left: 7px solid transparent;
+                        border-right: 7px solid transparent;
+                        border-bottom: 7px solid #ccc;
+                    }
+
+
             #busca_carrinho_usuario .icons {
                 margin-left: 10px;
                 text-decoration: none;
             }
 
             #quantidade {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 position: absolute;
-                top: -10px;
+                top: -8px;
                 left: 20px;
-                height: 23px;
-                padding: 0 4px;
+                height: 18px;
+                width: 18px;
                 border-radius: 50%;
                 background-color: #80ed99;
             }
@@ -125,6 +187,7 @@ body {
 
         header nav .subNav {
             /* display: none; */
+            display: block;
             visibility: hidden;
             opacity: 0.5;
             position: absolute;
@@ -136,7 +199,7 @@ body {
             background-color: #fff;
             padding-top: 15px;
             padding-left: 0;
-            transition: opacity 350ms ease-in-out;
+            transition: visibility 350ms ease-in ,opacity 350ms ease-in;
             box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1);
         }
 

@@ -1,5 +1,5 @@
 <?php
-$v->layout("_theme");
+$v->layout("_theme2");
 
       $v->start("cssThisPage");?>
         <link rel="stylesheet" href="<?= url("view/css/cadastro.css"); ?>">
@@ -252,7 +252,7 @@ $v->layout("_theme");
         var data = $(this).data();
         var form = $(this).serialize();
 
-        $.post(data.action, form,function(callback){
+        $.post(data.action, form, function(callback){
             if (callback == 1) {
                 window.location.href = "<?= $router->route("web.loginscreen"); ?>";
 
